@@ -104,7 +104,7 @@ class Sequence {
 }
 
 const seq = new Sequence(1, 10, 2);
-console.log('seq', seq);
+// console.log('seq', seq);
 // for (const num of seq) {
 // 	if (num < 7) {
 // 		console.log('num', num);
@@ -138,10 +138,49 @@ class Sequence2 {
 }
 
 const seq2 = new Sequence2(1, 10, 2);
-console.log('seq2', seq2);
-for (const num of seq2) {
-	console.log('num.2', num);
+// console.log('seq2', seq2);
+// for (const num of seq2) {
+// 	console.log('num.2', num);
+// }
+// for (const obj of seq2.sayHello()) {
+// 	console.log('obj', obj);
+// }
+
+// [Symbol.asyncIterator]
+function simulatingApi(timeOut = 1000, num = 0) {
+	const promise = new Promise((resolve, reject) => {
+		setTimeout(() => {
+			resolve(num);
+		}, timeOut);
+	});
+	return promise;
 }
-for (const obj of seq2.sayHello()) {
-	console.log('obj', obj);
+
+// simulatingApi(3000).then((result) => {
+// 	console.log('result', result);
+// });
+
+const myAsyncIterator = {
+	*[Symbol.asyncIterator]() {
+		let nextIndex = 0;
+		while (nextIndex < 5) {
+			// const num = await simulatingApi(3000, nextIndex); //=> error: await is only valid in async functions and the top level bodies of modules
+			// yield Promise.resolve(nextIndex); // => works fine
+			yield simulatingApi(1000, nextIndex);
+			nextIndex++;
+		}
+	},
+};
+
+async function printNum() {
+	for await (const x of myAsyncIterator) {
+		console.log('x', x);
+		// x.then((result) => console.log(result));
+		const num = await x;
+		console.log(num);
+	}
 }
+
+printNum();
+
+console.log('hi there');
