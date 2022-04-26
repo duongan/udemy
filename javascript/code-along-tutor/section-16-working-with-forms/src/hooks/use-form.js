@@ -9,7 +9,6 @@ const useForm = (validateFn) => {
 
     const inputChangeHandler = (event) => {
         setValueInput(event.target.value);
-        setIsTouched(true);
     };
 
     const inputBlurHandler = (event) => {
