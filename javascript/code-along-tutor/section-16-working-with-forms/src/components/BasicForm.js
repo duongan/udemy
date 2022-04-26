@@ -28,8 +28,19 @@ const BasicForm = (props) => {
         reset: resetEmailInput,
     } = useForm((value) => value.includes('@'));
 
+    let formIsInvalid = !(
+        firstNameInputIsValid &&
+        lastNameInputIsValid &&
+        emailInputIsValid
+    );
+
     const onSubmitHandler = (event) => {
         event.preventDefault();
+
+        if (formIsInvalid) {
+            return;
+        }
+
         console.log({
             firstName: firstNameInputValue,
             lastName: lastNameInputValue,
@@ -40,11 +51,6 @@ const BasicForm = (props) => {
         resetLastNameInput();
         resetEmailInput();
     };
-
-    let formIsInvalid = firstNameInputHasError || !firstNameInputIsValid;
-    formIsInvalid =
-        formIsInvalid || lastNameInputHasError || !lastNameInputIsValid;
-    formIsInvalid = formIsInvalid || emailInputHasError || !emailInputIsValid;
 
     const firtNameInputClasses = firstNameInputHasError
         ? 'form-control invalid'
