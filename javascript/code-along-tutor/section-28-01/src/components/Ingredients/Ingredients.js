@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 
 import IngredientForm from './IngredientForm';
 import IngredientList from './IngredientList';
@@ -6,20 +6,6 @@ import Search from './Search';
 
 function Ingredients() {
   const [ingredients, setIngredients] = useState([]);
-
-  useEffect(() => {
-    fetch(
-      'https://react-http-3b4e8-default-rtdb.asia-southeast1.firebasedatabase.app/ingredients.json'
-    )
-      .then((response) => response.json())
-      .then((responseData) => {
-        const loadedIngredients = [];
-        for (const key in responseData) {
-          loadedIngredients.push({ id: key, ...responseData[key] });
-        }
-        setIngredients(loadedIngredients);
-      });
-  }, []);
 
   useEffect(() => {
     console.log('RENDERING');
@@ -53,9 +39,9 @@ function Ingredients() {
     );
   };
 
-  const filterIngredientsHandler = (filteredIngredients) => {
+  const filterIngredientsHandler = useCallback((filteredIngredients) => {
     setIngredients(filteredIngredients);
-  };
+  }, []);
 
   return (
     <div className="App">
