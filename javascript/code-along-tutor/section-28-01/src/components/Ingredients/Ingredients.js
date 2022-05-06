@@ -34,9 +34,16 @@ function Ingredients() {
   };
 
   const removeIngredientHandler = (id) => {
-    setIngredients((prevIngredients) =>
-      prevIngredients.filter((ig) => ig.id !== id)
-    );
+    fetch(
+      `https://react-http-3b4e8-default-rtdb.asia-southeast1.firebasedatabase.app/ingredients/${id}.json`,
+      {
+        method: 'DELETE',
+      }
+    ).then((response) => {
+      setIngredients((prevIngredients) =>
+        prevIngredients.filter((ig) => ig.id !== id)
+      );
+    });
   };
 
   const filterIngredientsHandler = useCallback((filteredIngredients) => {
