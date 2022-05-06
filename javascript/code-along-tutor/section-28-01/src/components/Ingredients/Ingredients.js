@@ -21,6 +21,10 @@ function Ingredients() {
       });
   }, []);
 
+  useEffect(() => {
+    console.log('RENDERING');
+  }, [ingredients]);
+
   const addIngredientHandler = (ingredient) => {
     fetch(
       'https://react-http-3b4e8-default-rtdb.asia-southeast1.firebasedatabase.app/ingredients.json',
@@ -49,12 +53,16 @@ function Ingredients() {
     );
   };
 
+  const filterIngredientsHandler = (filteredIngredients) => {
+    setIngredients(filteredIngredients);
+  };
+
   return (
     <div className="App">
       <IngredientForm onAddIngredient={addIngredientHandler} />
 
       <section>
-        <Search />
+        <Search onLoadingIngredients={filterIngredientsHandler} />
         <IngredientList
           ingredients={ingredients}
           onRemoveItem={removeIngredientHandler}
