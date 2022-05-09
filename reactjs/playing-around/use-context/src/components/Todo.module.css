@@ -1,0 +1,10 @@
+.todo {
+  border: 1px solid #ccc;
+  padding: 15px;
+  margin-bottom: 10px;
+}
+
+.title {
+  color: blueviolet;
+  font-weight: 700;
+}
