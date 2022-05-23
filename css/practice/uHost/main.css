@@ -26,7 +26,20 @@ body {
 }
 
 .toggle-button {
-  display: none;
+  width: 3rem;
+  background: transparent;
+  border: none;
+  vertical-align: middle;
+  padding-top: 0;
+  padding-bottom: 0;
+  cursor: pointer;
+}
+
+.toggle-button__bar {
+  display: block;
+  height: 0.2rem;
+  background-color: black;
+  margin: 0.6rem 0;
 }
 
 .main-header__brand img {
@@ -35,7 +48,7 @@ body {
 }
 
 .main-nav {
-  display: flex;
+  display: none;
 }
 
 .main-nav__items {
@@ -81,9 +94,9 @@ main {
 }
 
 .product-overview {
+  width: 100vw;
+  height: 33vh;
   background: linear-gradient(to top, rgba(80, 68, 18, 0.6) 10%, transparent), url('images/freedom.jpg') center/cover no-repeat border-box;
-  height: 40vh;
-  background-position: 50% 25%;
   position: relative;
 }
 
@@ -92,7 +105,7 @@ main {
   color: white;
   left: 3%;
   bottom: 5%;
-  font-size: 3rem;
+  font-size: 1.6rem;
   font-family: "Anton", sans-serif;
 }
 
@@ -104,19 +117,9 @@ main {
   color: #2ddf5c;
 }
 
-.plan__list {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
 .plan {
   background-color: #d5ffdc;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
   text-align: center;
-  width: 30%;
   margin: 0.5rem 0;
   padding: 1rem;
 }
@@ -252,4 +255,38 @@ main {
 .main-footer__link a:hover,
 .main-footer__link a:active {
   color: #ccc;
+}
+
+@media (min-width: 40rem) {
+  .main-nav {
+    display: flex;
+  }
+
+  .toggle-button {
+    display: none;
+  }
+
+  .product-overview {
+    height: 40vh;
+    background-position: 50% 25%;
+  }
+
+  .product-overview h1 {
+    font-size: 3rem;
+  }
+
+  .plan__list {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .plan {
+    width: 30%;
+    min-width: 13rem;
+    max-width: 25rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
 }
