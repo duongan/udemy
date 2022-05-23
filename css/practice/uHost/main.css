@@ -1,0 +1,45 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.main-header {
+  background-color: #2ddf5c;
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem 1rem;
+}
+
+.toggle-button {
+  display: none;
+}
+
+.main-header__brand {
+  display: inline-block;
+}
+
+.main-header__brand img {
+  height: 2.5rem;
+}
+
+.main-nav {
+  display: flex;
+  align-items: center;
+}
+
+.main-nav__items {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.product-overview h1 {
+  background: url('images/freedom.jpg');
+  height: 300px;
+}
