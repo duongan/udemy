@@ -2,10 +2,16 @@
   box-sizing: border-box;
 }
 
+html {
+  height: 100%;
+}
+
 body {
   margin: 0 auto;
   display: flex;
   flex-direction: column;
+  font-family: "Montserrat", sans-serif;
+  height: 100%;
 }
 
 .main-header {
@@ -13,23 +19,23 @@ body {
   display: flex;
   justify-content: space-between;
   padding: 0.5rem 1rem;
+  align-items: center;
+  position: fixed;
+  width: 100%;
+  z-index: 100;
 }
 
 .toggle-button {
   display: none;
 }
 
-.main-header__brand {
-  display: inline-block;
-}
-
 .main-header__brand img {
   height: 2.5rem;
+  vertical-align: middle;
 }
 
 .main-nav {
   display: flex;
-  align-items: center;
 }
 
 .main-nav__items {
@@ -39,7 +45,211 @@ body {
   padding: 0;
 }
 
+.main-nav__item {
+  margin: 0 1rem;
+}
+
+.main-nav__item a {
+  text-decoration: none;
+  font-weight: bold;
+  color: #0e4f1f;
+  padding: 0.2rem 0;
+}
+
+.main-nav__item a:hover,
+.main-nav__item a:active {
+  color: #fff;
+  border-bottom: 5px solid white;
+}
+
+.main-nav__item--cta a {
+  background-color: #ff1b68;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  color: white;
+}
+
+.main-nav__item--cta a:hover,
+.main-nav__item--cta a:active {
+  border-bottom: none;
+  background: white;
+  color: #ff1b68;
+}
+
+main {
+  margin-top: 3.5rem;
+}
+
+.product-overview {
+  background: linear-gradient(to top, rgba(80, 68, 18, 0.6) 10%, transparent), url('images/freedom.jpg') center/cover no-repeat border-box;
+  height: 40vh;
+  background-position: 50% 25%;
+  position: relative;
+}
+
 .product-overview h1 {
-  background: url('images/freedom.jpg');
-  height: 300px;
+  position: absolute;
+  color: white;
+  left: 3%;
+  bottom: 5%;
+  font-size: 3rem;
+  font-family: "Anton", sans-serif;
+}
+
+.section-title {
+  text-align: center;
+}
+
+.plans .section-title {
+  color: #2ddf5c;
+}
+
+.plan__list {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.plan {
+  background-color: #d5ffdc;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: center;
+  width: 30%;
+  margin: 0.5rem 0;
+  padding: 1rem;
+}
+
+.plan--highlighted {
+  background: #19b84c;
+  box-shadow: 2px 2px 4px 1px rgba(0, 0, 0, 0.5);
+  z-index: 10;
+}
+
+.plan--highlighted .plan__price {
+  color: #0e4f1f;
+}
+
+.plan--highlighted .plan__title,
+.plan--highlighted h3,
+.plan--highlighted .plan__feature {
+  color: white;
+}
+
+.plan__annotation {
+  text-align: center;
+  background: white;
+  border-radius: 8px;
+  padding: 0.5rem;
+  color: #19b84c;
+  box-shadow: 2px 2px 4px 1px rgba(0, 0, 0, 0.5);
+}
+
+.plan__title {
+  color: #0e4f1f;
+}
+
+.plan__price {
+  color: #858585;
+}
+
+.plan__features {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.plan__feature {
+  margin: 0.5rem 0;
+}
+
+.plan button {
+  font: inherit;
+  background-color: #0e4f1f;
+  color: white;
+  border: none;
+  border-radius: 0.5rem;
+  font-weight: bold;
+  padding: 0.5rem;
+  border: 1px solid #0e4f1f;
+}
+
+.plan button:hover {
+  cursor: pointer;
+  background-color: white;
+  color: #0e4f1f;
+}
+
+.key-features {
+  background-color: #ff1b68;
+  margin-top: 5rem;
+  padding: 1rem;
+}
+
+.key-features .section-title {
+  color: white;
+  margin: 2rem;
+}
+
+.key-feature__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+}
+
+.key-feature {
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.key-feature__image {
+  border: 2px solid #424242;
+  background-color: #ffcede;
+  width: 8rem;
+  height: 8rem;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.key-feature__image svg {
+  height: 4.75rem;
+}
+
+.key-feature__description {
+  color: white;
+  font-weight: bold;
+  text-align: center;
+  font-size: 1.2rem;
+}
+
+.main-footer {
+  background-color: black;
+  padding: 1rem;
+  margin-top: 3rem;
+}
+
+.main-footer__links {
+  display: flex;
+  justify-content: center;
+}
+
+.main-footer__link a {
+  color: white;
+  text-decoration: none;
+  margin: 0 1rem;
+}
+
+.main-footer__link a:hover,
+.main-footer__link a:active {
+  color: #ccc;
 }
