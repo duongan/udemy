@@ -202,12 +202,9 @@ main {
   list-style: none;
   margin: 0;
   padding: 0;
-  display: flex;
-  justify-content: center;
 }
 
 .key-feature {
-  width: 30%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -237,13 +234,18 @@ main {
 
 .main-footer {
   background-color: black;
-  padding: 1rem;
+  padding: 2rem;
   margin-top: 3rem;
 }
 
 .main-footer__links {
-  display: flex;
-  justify-content: center;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+
+.main-footer__link {
+  margin: 0.5rem 0;
 }
 
 .main-footer__link a {
@@ -288,5 +290,25 @@ main {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+  }
+
+  .key-feature__list {
+    display: flex;
+    justify-content: center;
+  }
+
+  .key-feature {
+    width: 21%;
+    min-width: 11rem;
+    max-width: 25rem;
+  }
+
+  .main-footer__links {
+    display: flex;
+    justify-content: center;
+  }
+
+  .main-footer__link {
+    margin: 0;
   }
 }
