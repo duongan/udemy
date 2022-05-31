@@ -1,0 +1,49 @@
+* {
+  box-sizing: border-box;
+  color: brown;
+}
+
+body {
+  margin: 0 auto;
+}
+
+.box {
+  width: 100px;
+  height: 100px;
+  background-color: #ccc;
+  border: 1px solid black;
+  padding: 5px;
+  margin: 10px;
+}
+
+span {
+  color: red;
+}
+
+span + span {
+  color: gold;
+}
+
+div > span {
+  color: dimgray;
+}
+
+div span {
+  color: chartreuse;
+}
+
+.box span {
+  color: yellow;
+}
+
+#text_id {
+  color: blueviolet;
+}
+
+.text {
+  color: blue;
+}
+
+span:hover {
+  color: green;
+}
