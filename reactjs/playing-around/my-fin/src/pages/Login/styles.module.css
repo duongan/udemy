@@ -1,17 +1,16 @@
 .container {
   background-color: #f5f8fa;
-  display: flex;
+  /* display: flex; */
   height: 100vh;
 }
 
 .left {
-  width: 50%;
-  padding: 20px;
+  /* width: 50%; */
+  min-width: 22rem;
+  padding: 20px 40px;
 }
 
 .right {
-  width: 50%;
-  background-color: forestgreen;
   display: none;
 }
 
@@ -25,7 +24,6 @@
 }
 
 .logoContainer .appName {
-  text-transform: uppercase;
   margin-left: 0.4rem;
   font-size: 1.2rem;
   font-weight: 600;
@@ -38,15 +36,42 @@
 }
 
 .logoContainer .appName span:last-of-type {
+  text-transform: uppercase;
   margin-left: 0.2rem;
 }
 
 .formContainer {
   margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-@media (min-width: 600px) {
+.formContainer .formTitle {
+  margin: 5rem 0;
+  text-align: center;
+  font-weight: 700;
+  font-size: 2.5rem;
+  font-family: "Source Serif Pro", sans-serif;
+  line-height: 1rem;
+}
+
+@media (min-width: 500px) {
+  .container {
+    display: flex;
+  }
+
+  .left {
+    width: 50%;
+  }
+
   .right {
+    width: 50%;
+    background: url("../../assets/images/connect-graphic.jpg") no-repeat center/cover;
     display: block;
+  }
+
+  .formContainer .formTitle {
+    font-size: 3.5rem;
   }
 }

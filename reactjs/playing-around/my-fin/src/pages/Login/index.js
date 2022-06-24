@@ -1,7 +1,8 @@
-import React from "react";
+import React from 'react';
 
-import styles from "./styles.module.css";
-import emptyImg from "../../assets/images/empty-image.png";
+import LoginForm from '../../components/LoginForm';
+import styles from './styles.module.css';
+import emptyImg from '../../assets/images/empty-image.png';
 
 const Login = () => {
   return (
@@ -10,24 +11,16 @@ const Login = () => {
         <div className={styles.logoContainer}>
           <img src={emptyImg} alt="logo" />
           <div className={styles.appName}>
-            <span>My</span>
+            <span>my</span>
             <span>Fin</span>
           </div>
         </div>
         <div className={styles.formContainer}>
-          <form>
-            <div>
-              <label>Email</label>
-              <input type="text" />
-            </div>
-            <div>
-              <label>Password</label>
-              <input type="password" />
-            </div>
-          </form>
+          <div className={styles.formTitle}>Log In</div>
+          <LoginForm />
         </div>
       </div>
-      <div className={styles.right}>Right</div>
+      <div className={styles.right}></div>
     </div>
   );
 };

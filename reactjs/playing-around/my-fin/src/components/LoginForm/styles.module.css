@@ -1,0 +1,18 @@
+form {
+  min-width: 18rem;
+}
+
+form .controls {
+  display: flex;
+  flex-direction: column;
+}
+
+.controls label {
+  font-size: 0.9rem;
+}
+
+@media (min-width: 850px) {
+  form {
+    min-width: 22rem;
+  }
+}
