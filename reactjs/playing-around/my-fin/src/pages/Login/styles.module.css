@@ -1,0 +1,52 @@
+.container {
+  background-color: #f5f8fa;
+  display: flex;
+  height: 100vh;
+}
+
+.left {
+  width: 50%;
+  padding: 20px;
+}
+
+.right {
+  width: 50%;
+  background-color: forestgreen;
+  display: none;
+}
+
+.logoContainer {
+  display: flex;
+}
+
+.logoContainer img {
+  width: 20px;
+  height: 20px;
+}
+
+.logoContainer .appName {
+  text-transform: uppercase;
+  margin-left: 0.4rem;
+  font-size: 1.2rem;
+  font-weight: 600;
+  line-height: 20px;
+}
+
+.logoContainer .appName span:first-of-type {
+  font-weight: 500;
+  font-style: italic;
+}
+
+.logoContainer .appName span:last-of-type {
+  margin-left: 0.2rem;
+}
+
+.formContainer {
+  margin-top: 2rem;
+}
+
+@media (min-width: 600px) {
+  .right {
+    display: block;
+  }
+}
