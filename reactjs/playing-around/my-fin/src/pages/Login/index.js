@@ -1,7 +1,7 @@
 import React from 'react';
 
 import LoginForm from '../../components/LoginForm';
-import styles from './styles.module.css';
+import styles from './Login.module.css';
 import emptyImg from '../../assets/images/empty-image.png';
 
 const Login = () => {

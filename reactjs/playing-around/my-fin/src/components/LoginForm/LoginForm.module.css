@@ -1,0 +1,62 @@
+form {
+  min-width: 18rem;
+}
+
+form .controls {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.controls + .controls {
+  margin-top: 20px;
+}
+
+.controls label {
+  font-size: 0.9rem;
+  margin-left: 10px;
+  margin-bottom: 5px;
+}
+
+.controls a {
+  position: absolute;
+  right: 0;
+  font-size: 0.8rem;
+  text-decoration: none;
+  color: #b33556;
+}
+
+.controls a:hover {
+  color: #f73a7e;
+}
+
+.controls:last-of-type {
+  flex-direction: row;
+  margin-top: 2.5rem;
+}
+
+.rememberMeContainer {
+  width: 50%;
+  display: flex;
+  align-items: center;
+}
+
+.rememberMeContainer input {
+  height: auto;
+  margin-top: 0;
+}
+
+.rememberMeContainer label {
+  margin-left: 2px;
+  margin-bottom: 0;
+}
+
+.loginBtnContainer {
+  width: 50%;
+}
+
+@media (min-width: 850px) {
+  form {
+    min-width: 22rem;
+  }
+}
