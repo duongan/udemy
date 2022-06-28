@@ -8,6 +8,19 @@ const LoginForm = () => {
     e.preventDefault();
   };
 
+  const login = () => {
+    console.log('Login clicked!');
+  };
+
+  const btnProps = {
+    hoveredBgColor: '#cb5070',
+    bgColor: '#b33556',
+    boxShadow: '1px 5px 6px rgb(179 53 86 / 50%)',
+    title: 'Log in',
+    height: '2.5rem',
+    onClick: login,
+  };
+
   return (
     <form>
       <div className={styles.controls}>
@@ -27,7 +40,7 @@ const LoginForm = () => {
           <label htmlFor="remember-me">Remember me</label>
         </div>
         <div className={styles.loginBtnContainer}>
-          <Button style={{ background: '#b33556' }} title="Log in" />
+          <Button {...btnProps} />
         </div>
       </div>
     </form>

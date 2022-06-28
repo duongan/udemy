@@ -55,6 +55,12 @@ form .controls {
   width: 50%;
 }
 
+@media (min-width: 280px) {
+  form {
+    min-width: 16rem;
+  }
+}
+
 @media (min-width: 850px) {
   form {
     min-width: 22rem;

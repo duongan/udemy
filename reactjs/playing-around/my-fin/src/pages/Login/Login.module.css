@@ -56,6 +56,14 @@
   line-height: 1rem;
 }
 
+@media screen and (min-width: 280px) {
+  .left {
+    padding-left: 10px;
+    padding-right: 10px;
+    min-width: 17rem;
+  }
+}
+
 @media (min-width: 500px) {
   .container {
     display: flex;
