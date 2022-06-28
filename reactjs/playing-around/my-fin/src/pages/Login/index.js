@@ -22,6 +22,9 @@ const Login = () => {
           <div className={styles.seperator}></div>
           <SocialButtons />
         </div>
+        <div className={styles.signupLinkContainer}>
+          <a href="./">Sign up with email</a>
+        </div>
       </div>
       <div className={styles.right}></div>
     </div>
