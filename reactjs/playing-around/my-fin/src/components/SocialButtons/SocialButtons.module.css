@@ -1,0 +1,7 @@
+.container {
+  margin-top: 3rem;
+}
+
+button+button {
+  margin-top: 1.5rem;
+}

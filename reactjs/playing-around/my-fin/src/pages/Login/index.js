@@ -1,6 +1,7 @@
 import React from 'react';
 
 import LoginForm from '../../components/LoginForm';
+import SocialButtons from '../../components/SocialButtons';
 import styles from './Login.module.css';
 import emptyImg from '../../assets/images/empty-image.png';
 
@@ -18,6 +19,8 @@ const Login = () => {
         <div className={styles.formContainer}>
           <div className={styles.formTitle}>Log In</div>
           <LoginForm />
+          <div className={styles.seperator}></div>
+          <SocialButtons />
         </div>
       </div>
       <div className={styles.right}></div>

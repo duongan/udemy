@@ -7,9 +7,14 @@ const Button = (props) => {
   const title = props.children || props.title || '';
 
   useEffect(() => {
-    if (props) {
-      btnRef.current.style.backgroundColor = props.bgColor || 'none';
-      btnRef.current.style.height = props.height || 'auto';
+    const { style, hoverEffect } = props;
+    if (style) {
+      Object.keys(style).forEach((key) => {
+        btnRef.current.style[key] = style[key];
+        if (hoverEffect) {
+          btnRef.current.style.boxShadow = 'none';
+        }
+      });
     }
   });
 
@@ -22,13 +27,26 @@ const Button = (props) => {
   };
 
   const mouseOverHandler = (e) => {
-    e.target.style.backgroundColor = props.hoveredBgColor || 'none';
-    e.target.style.boxShadow = props.boxShadow || 'none';
+    const { style, hoverEffect } = props;
+    if (!hoverEffect) {
+      return;
+    }
+    if (props.hoveredBgColor) {
+      e.target.style.backgroundColor = props.hoveredBgColor;
+    }
+    if (style.boxShadow) {
+      e.target.style.boxShadow = style.boxShadow;
+    }
   };
 
   const mouseOutHandler = (e) => {
-    e.target.style.backgroundColor = props.bgColor || 'none';
-    e.target.style.boxShadow = 'none';
+    const { style, hoverEffect } = props;
+    if (hoverEffect) {
+      if (style && style.backgroundColor) {
+        e.target.style.backgroundColor = style.backgroundColor;
+      }
+      e.target.style.boxShadow = 'none';
+    }
   };
 
   return (

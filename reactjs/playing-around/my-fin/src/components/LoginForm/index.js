@@ -13,11 +13,15 @@ const LoginForm = () => {
   };
 
   const btnProps = {
+    hoverEffect: true,
     hoveredBgColor: '#cb5070',
-    bgColor: '#b33556',
-    boxShadow: '1px 5px 6px rgb(179 53 86 / 50%)',
     title: 'Log in',
-    height: '2.5rem',
+    style: {
+      height: '2.5rem',
+      backgroundColor: '#b33556',
+      textTransform: 'uppercase',
+      boxShadow: '1px 5px 6px rgb(179 53 86 / 50%)',
+    },
     onClick: login,
   };
 

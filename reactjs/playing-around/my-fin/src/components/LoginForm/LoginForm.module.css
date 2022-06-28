@@ -1,5 +1,5 @@
 form {
-  min-width: 18rem;
+  width: 100%;
 }
 
 form .controls {
@@ -8,7 +8,7 @@ form .controls {
   position: relative;
 }
 
-.controls + .controls {
+.controls+.controls {
   margin-top: 20px;
 }
 
@@ -53,16 +53,4 @@ form .controls {
 
 .loginBtnContainer {
   width: 50%;
-}
-
-@media (min-width: 280px) {
-  form {
-    min-width: 16rem;
-  }
-}
-
-@media (min-width: 850px) {
-  form {
-    min-width: 22rem;
-  }
 }
