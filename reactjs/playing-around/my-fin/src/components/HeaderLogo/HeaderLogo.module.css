@@ -1,7 +1,7 @@
 .container {
   display: flex;
   align-self: flex-start;
-  /* padding-left: 1rem; */
+  cursor: pointer;
 }
 
 .container img {
