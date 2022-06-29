@@ -1,0 +1,33 @@
+.container {
+  display: flex;
+  align-self: flex-start;
+  /* padding-left: 1rem; */
+}
+
+.container img {
+  width: 20px;
+  height: 20px;
+}
+
+.container .brandName {
+  margin-left: 0.4rem;
+  font-size: 1.5rem;
+  font-weight: 600;
+  line-height: 20px;
+}
+
+.container .brandName span:first-of-type {
+  font-weight: 500;
+  font-style: italic;
+}
+
+.container .brandName span:last-of-type {
+  text-transform: uppercase;
+  margin-left: 0.2rem;
+}
+
+/* @media (max-width: 500px) {
+  .container {
+    padding-left: 0.5rem;
+  }
+} */

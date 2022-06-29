@@ -1,21 +1,15 @@
 import React from 'react';
-
+import { Link } from 'react-router-dom';
 import LoginForm from '../../components/LoginForm';
 import SocialButtons from '../../components/SocialButtons';
+import HeaderLogo from '../../components/HeaderLogo';
 import styles from './Login.module.css';
-import emptyImg from '../../assets/images/empty-image.png';
 
 const Login = () => {
   return (
     <div className={styles.container}>
       <div className={styles.left}>
-        <div className={styles.logoContainer}>
-          <img src={emptyImg} alt="logo" />
-          <div className={styles.appName}>
-            <span>my</span>
-            <span>Fin</span>
-          </div>
-        </div>
+        <HeaderLogo />
         <div className={styles.formContainer}>
           <div className={styles.formTitle}>Log In</div>
           <LoginForm />
@@ -23,7 +17,7 @@ const Login = () => {
           <SocialButtons />
         </div>
         <div className={styles.signupLinkContainer}>
-          <a href="./">Sign up with email</a>
+          <Link to="/sign-up">Sign up with email</Link>
         </div>
       </div>
       <div className={styles.right}></div>
