@@ -12,6 +12,7 @@ const SocialButtons = () => {
     hoverEffect: true,
     hoveredBgColor: 'rgba(36,36,36,.86)',
     title: 'Log in with Apple',
+    defaultBoxShadow: '1px 2px 6px rgb(10 10 10 / 30%)',
     style: {
       height: btnHeight,
       backgroundColor: 'rgba(10,10,10,.86)',
@@ -44,6 +45,7 @@ const SocialButtons = () => {
     hoverEffect: true,
     hoveredBgColor: '#4164b2',
     title: 'Log in with Facebook',
+    defaultBoxShadow: '1px 2px 6px rgb(51 79 141 / 30%)',
     style: {
       height: btnHeight,
       backgroundColor: '#334f8d',

@@ -27,6 +27,7 @@ const LoginForm = () => {
   const btnProps = {
     hoverEffect: true,
     hoveredBgColor: '#cb5070',
+    defaultBoxShadow: '1px 2px 6px rgb(179 53 86 / 30%)',
     title: 'Log in',
     style: {
       height: '2.5rem',

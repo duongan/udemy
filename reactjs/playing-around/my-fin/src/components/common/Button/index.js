@@ -7,12 +7,12 @@ const Button = (props) => {
   const title = props.children || props.title || '';
 
   useEffect(() => {
-    const { style, hoverEffect } = props;
+    const { style, hoverEffect, defaultBoxShadow } = props;
     if (style) {
       Object.keys(style).forEach((key) => {
         btnRef.current.style[key] = style[key];
         if (hoverEffect) {
-          btnRef.current.style.boxShadow = 'none';
+          btnRef.current.style.boxShadow = defaultBoxShadow || 'none';
         }
       });
     }
@@ -44,7 +44,7 @@ const Button = (props) => {
   };
 
   const mouseOutHandler = (e) => {
-    const { style, hoverEffect, outlineColor } = props;
+    const { style, hoverEffect, outlineColor, defaultBoxShadow } = props;
     if (hoverEffect) {
       if (style && style.backgroundColor) {
         e.currentTarget.style.backgroundColor = style.backgroundColor;
@@ -53,7 +53,7 @@ const Button = (props) => {
         e.currentTarget.style.color = style.color;
         e.currentTarget.style.border = style.border;
       }
-      e.currentTarget.style.boxShadow = 'none';
+      e.currentTarget.style.boxShadow = defaultBoxShadow || 'none';
     }
   };
 
