@@ -3,7 +3,10 @@ import React from 'react';
 import './Input.module.css';
 
 const Input = (props) => {
-  return <input {...props} />;
+  const changeHandler = (e) => {
+    props.onChange(e.target.value);
+  };
+  return <input {...props} onChange={changeHandler} />;
 };
 
 export default Input;

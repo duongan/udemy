@@ -1,9 +1,21 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import { Input, Button } from '../common';
 import styles from './LoginForm.module.css';
 
 const LoginForm = () => {
+  const [enteredEmail, setEnteredEmail] = useState('');
+  const [enteredPassword, setEnteredPassword] = useState('');
+  const invalidForm = !enteredEmail || !enteredPassword;
+
+  const emailChangeHandler = (value) => {
+    setEnteredEmail(value);
+  };
+
+  const passwordChangeHandler = (value) => {
+    setEnteredPassword(value);
+  };
+
   const forgotPasswordHandler = (e) => {
     e.preventDefault();
   };
@@ -21,22 +33,24 @@ const LoginForm = () => {
       backgroundColor: '#b33556',
       textTransform: 'uppercase',
       boxShadow: '1px 5px 6px rgb(179 53 86 / 50%)',
+      opacity: invalidForm ? '0.3' : '1',
     },
     onClick: login,
+    disabled: invalidForm,
   };
 
   return (
     <form>
       <div className={styles.controls}>
         <label htmlFor="email">E-mail</label>
-        <Input id="email" type="text" />
+        <Input id="email" type="text" onChange={emailChangeHandler} />
       </div>
       <div className={styles.controls}>
         <label htmlFor="password">Password</label>
         <a href="./" onClick={forgotPasswordHandler}>
           Forgot password?
         </a>
-        <Input id="password" type="password" />
+        <Input id="password" type="password" onChange={passwordChangeHandler} />
       </div>
       <div className={styles.controls}>
         <div className={styles.rememberMeContainer}>

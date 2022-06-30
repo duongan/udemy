@@ -32,14 +32,14 @@ const Button = (props) => {
       return;
     }
     if (hoveredBgColor) {
-      e.target.style.backgroundColor = hoveredBgColor;
+      e.currentTarget.style.backgroundColor = hoveredBgColor;
     }
     if (style.boxShadow) {
-      e.target.style.boxShadow = style.boxShadow;
+      e.currentTarget.style.boxShadow = style.boxShadow;
     }
     if (outlineColor) {
-      e.target.style.color = outlineColor;
-      e.target.style.borderColor = outlineColor;
+      e.currentTarget.style.color = outlineColor;
+      e.currentTarget.style.borderColor = outlineColor;
     }
   };
 
@@ -47,23 +47,24 @@ const Button = (props) => {
     const { style, hoverEffect, outlineColor } = props;
     if (hoverEffect) {
       if (style && style.backgroundColor) {
-        e.target.style.backgroundColor = style.backgroundColor;
+        e.currentTarget.style.backgroundColor = style.backgroundColor;
       }
       if (outlineColor) {
-        e.target.style.color = style.color;
-        e.target.style.border = style.border;
+        e.currentTarget.style.color = style.color;
+        e.currentTarget.style.border = style.border;
       }
-      e.target.style.boxShadow = 'none';
+      e.currentTarget.style.boxShadow = 'none';
     }
   };
 
   return (
     <button
       ref={btnRef}
-      title={props.title}
+      // title={props.title}
       onClick={clickHandler}
       onMouseOver={mouseOverHandler}
       onMouseOut={mouseOutHandler}
+      disabled={props.disabled}
     >
       {title}
     </button>

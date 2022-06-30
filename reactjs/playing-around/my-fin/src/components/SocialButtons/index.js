@@ -1,6 +1,9 @@
 import React from 'react';
 
-import { Button } from '../common';
+import { ButtonWithIcon } from '../common';
+import appleIcon from '../../assets/images/apple.png';
+import googleIcon from '../../assets/images/google.png';
+import facebookIcon from '../../assets/images/facebook.png';
 import styles from './SocialButtons.module.css';
 
 const SocialButtons = () => {
@@ -13,7 +16,12 @@ const SocialButtons = () => {
       height: btnHeight,
       backgroundColor: 'rgba(10,10,10,.86)',
       boxShadow: '1px 5px 6px rgb(10 10 10 / 30%)',
+      position: 'relative',
     },
+    iconUrl: appleIcon,
+    iconAlt: 'apple',
+    iconWidth: 19,
+    iconHeight: 20,
   };
 
   const googleBtnProps = {
@@ -24,7 +32,12 @@ const SocialButtons = () => {
       height: btnHeight,
       backgroundColor: '#fff',
       boxShadow: '1px 5px 6px rgb(0 0 0 / 50%)',
+      position: 'relative',
     },
+    iconUrl: googleIcon,
+    iconAlt: 'google',
+    iconWidth: 19,
+    iconHeight: 20,
   };
 
   const facebookBtnProps = {
@@ -35,14 +48,19 @@ const SocialButtons = () => {
       height: btnHeight,
       backgroundColor: '#334f8d',
       boxShadow: '1px 5px 6px rgb(51 79 141 / 30%)',
+      position: 'relative',
     },
+    iconUrl: facebookIcon,
+    iconAlt: 'facebook',
+    iconWidth: 19,
+    iconHeight: 20,
   };
 
   return (
     <div className={styles.container}>
-      <Button {...appleBtnProps} />
-      <Button {...googleBtnProps} />
-      <Button {...facebookBtnProps} />
+      <ButtonWithIcon {...appleBtnProps} />
+      <ButtonWithIcon {...googleBtnProps} />
+      <ButtonWithIcon {...facebookBtnProps} />
     </div>
   );
 };
