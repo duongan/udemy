@@ -27,23 +27,31 @@ const Button = (props) => {
   };
 
   const mouseOverHandler = (e) => {
-    const { style, hoverEffect } = props;
+    const { style, hoverEffect, outlineColor, hoveredBgColor } = props;
     if (!hoverEffect) {
       return;
     }
-    if (props.hoveredBgColor) {
-      e.target.style.backgroundColor = props.hoveredBgColor;
+    if (hoveredBgColor) {
+      e.target.style.backgroundColor = hoveredBgColor;
     }
     if (style.boxShadow) {
       e.target.style.boxShadow = style.boxShadow;
     }
+    if (outlineColor) {
+      e.target.style.color = outlineColor;
+      e.target.style.borderColor = outlineColor;
+    }
   };
 
   const mouseOutHandler = (e) => {
-    const { style, hoverEffect } = props;
+    const { style, hoverEffect, outlineColor } = props;
     if (hoverEffect) {
       if (style && style.backgroundColor) {
         e.target.style.backgroundColor = style.backgroundColor;
+      }
+      if (outlineColor) {
+        e.target.style.color = style.color;
+        e.target.style.border = style.border;
       }
       e.target.style.boxShadow = 'none';
     }
