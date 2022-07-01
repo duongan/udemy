@@ -5,9 +5,7 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
-import storeA from './stores/storeA';
-import storeB from './stores/storeB';
-
+import { storeA, storeB } from './stores';
 import { contextA, contextB } from './contexts';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));

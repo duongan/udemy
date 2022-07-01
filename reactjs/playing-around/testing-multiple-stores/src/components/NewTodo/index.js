@@ -1,7 +1,7 @@
 import { useState, useRef, useContext } from 'react';
 import { contextA } from '../../contexts';
 
-const NewTodo = () => {
+const NewTodo = (props) => {
   const ctxA = useContext(contextA);
   const inputRef = useRef();
 
@@ -10,7 +10,8 @@ const NewTodo = () => {
   const submitHandler = (e) => {
     e.preventDefault();
     // setTaskName(inputRef.current.value);
-    ctxA.store.dispatch({ type: 'ADD_TASK', payload: inputRef.current.value });
+    // ctxA.store.dispatch({ type: 'ADD_TASK', payload: inputRef.current.value });
+    props.onAdd(inputRef.current.value);
   };
   return (
     <form onSubmit={submitHandler}>

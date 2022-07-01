@@ -1,13 +1,21 @@
-import { configureStore, createStore } from '@reduxjs/toolkit';
+import { configureStore } from '@reduxjs/toolkit';
 
 const initialState = {
   store: 'B',
-  users: [{ name: 'an.duong' }],
+  users: [{ name: 'An Duong', email: 'an.duong@gmail.com' }],
 };
 
 const reducer = (state, action) => {
-  return initialState;
+  switch (action.type) {
+    case 'ADD_USER':
+      return {
+        ...state,
+        users: [...state.users, { ...action.payload }],
+      };
+    default:
+      return initialState;
+  }
 };
 
-export default configureStore({ reducer });
+export const storeB = configureStore({ reducer });
 // export default createStore(reducer);
