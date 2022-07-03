@@ -1,10 +1,10 @@
 import styles from './Todo.module.scss';
 
-const Todo = () => {
+const Todo = (props) => {
   return (
     <div className={styles.container}>
       <input type="radio" />
-      <span>Task 1</span>
+      <span>{props.name}</span>
     </div>
   );
 };
