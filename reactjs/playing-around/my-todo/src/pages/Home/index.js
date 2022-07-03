@@ -1,5 +1,6 @@
 import { useSelector } from 'react-redux';
 import { Todos } from '../../components';
+import AddTodo from '../../components/AddTodo';
 // import { todoSlice } from '../../store';
 import styles from './Home.module.scss';
 
@@ -15,7 +16,7 @@ const Home = () => {
 
   return (
     <div className={styles.container}>
-      {/* <button onClick={addTodoHandler}>Add</button> */}
+      <AddTodo />
       <Todos items={todos} />
     </div>
   );

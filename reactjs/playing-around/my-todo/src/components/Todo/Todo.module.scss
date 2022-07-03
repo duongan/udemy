@@ -10,11 +10,23 @@
   }
 
   span {
+    flex: 1;
     margin-left: 0.5rem;
+  }
+
+  a {
+    text-decoration: none;
+    color: rgba($color: #000, $alpha: 0.5);
+    font-size: 0.8rem;
+    margin-right: 1rem;
+  }
+
+  a:hover {
+    color: rgb(236, 83, 83);
   }
 }
 
 .container:hover {
-  background-color: rgba($color: #ccc, $alpha: 0.2);
+  background-color: rgba($color: #000, $alpha: 0.1);
   cursor: pointer;
 }
