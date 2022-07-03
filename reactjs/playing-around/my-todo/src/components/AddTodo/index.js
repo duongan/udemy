@@ -1,10 +1,13 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { API_URL } from '../../constants';
+import useHttp from '../../hooks/useHttp';
 import { todoActions } from '../../store/TodoSlice';
 import styles from './AddTodo.module.scss';
 
 const AddTodo = () => {
   const dispatch = useDispatch();
+  const { sendRequest } = useHttp();
 
   const [taskName, setTaskName] = useState('');
 
@@ -18,7 +21,17 @@ const AddTodo = () => {
     if (!taskName) {
       return;
     }
-    dispatch(todoActions.add({ name: taskName }));
+    sendRequest(
+      {
+        url: `${API_URL}/tasks.json`,
+        method: 'POST',
+        data: { text: taskName },
+      },
+      (responsedData) => {
+        console.log('responsedData', responsedData);
+      }
+    );
+    // dispatch(todoActions.add({ name: taskName }));
     setTaskName('');
   };
 

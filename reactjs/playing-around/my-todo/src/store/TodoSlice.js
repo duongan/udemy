@@ -6,8 +6,16 @@ const TodoSlice = createSlice({
     todos: [],
   },
   reducers: {
+    loadTodoList: (state, action) => {
+      state.todos = action.payload;
+    },
     add: (state, action) => {
-      state.todos.push({ id: Date.now().toString(), ...action.payload });
+      const existingTask = state.todos.find(
+        (item) => item.id === action.payload.id
+      );
+      if (!existingTask) {
+        state.todos.push({ ...action.payload });
+      }
     },
     remove: (state, action) => {
       state.todos = state.todos.filter((item) => item.id !== action.payload);
