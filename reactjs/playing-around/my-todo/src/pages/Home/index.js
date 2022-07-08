@@ -10,25 +10,38 @@ import styles from './Home.module.scss';
 const Home = () => {
   console.log('Home RENDERING!!!');
   const [todos, setTodos] = useState([]);
+  const [isDataLoaded, setIsDataLoaded] = useState(false);
   const dispatch = useDispatch();
-  // const todos = useSelector((state) => state.todos);
+  const storedTodos = useSelector((state) => state.todos);
   const { sendRequest } = useHttp();
 
   useEffect(() => {
-    // console.log('HOME --- useEffect Running!!!');
+    if (isDataLoaded) {
+      setTodos(storedTodos);
+      return;
+    }
+
     const transformData = (responsedData) => {
       const loadedTodos = [];
       for (const key in responsedData) {
         loadedTodos.push({ id: key, name: responsedData[key].text });
       }
       dispatch(todoActions.loadTodoList(loadedTodos));
+      setIsDataLoaded(true);
       setTodos(loadedTodos);
     };
     const requestConfig = {
       url: `${API_URL}/tasks.json`,
     };
     sendRequest(requestConfig, transformData);
-  }, [sendRequest, dispatch, setTodos]);
+  }, [
+    sendRequest,
+    dispatch,
+    setTodos,
+    isDataLoaded,
+    setIsDataLoaded,
+    storedTodos,
+  ]);
 
   return (
     <div className={styles.container}>

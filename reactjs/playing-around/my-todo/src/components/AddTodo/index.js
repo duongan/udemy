@@ -29,9 +29,9 @@ const AddTodo = () => {
       },
       (responsedData) => {
         console.log('responsedData', responsedData);
+        dispatch(todoActions.add({ name: taskName, id: responsedData.name }));
       }
     );
-    // dispatch(todoActions.add({ name: taskName }));
     setTaskName('');
   };
 
