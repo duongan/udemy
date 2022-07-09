@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { API_URL } from '../../constants';
-import useHttp from '../../hooks/useHttp';
+import useHttp from '../../hooks/use-http';
 import { todoActions } from '../../store/TodoSlice';
 import styles from './AddTodo.module.scss';
 
