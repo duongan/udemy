@@ -1,16 +1,16 @@
 import { Provider } from 'react-redux';
-import { Layout } from './components';
-import Home from './pages/Home';
 import store from './store';
 import './App.css';
+import RootPage from './pages';
+import { BrowserRouter } from 'react-router-dom';
 
 function App() {
   return (
-    <Provider store={store}>
-      <Layout>
-        <Home />
-      </Layout>
-    </Provider>
+    <BrowserRouter>
+      <Provider store={store}>
+        <RootPage />
+      </Provider>
+    </BrowserRouter>
   );
 }
 

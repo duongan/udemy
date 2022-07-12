@@ -4,8 +4,8 @@ import AddTodo from '../../components/AddTodo';
 import styles from './Home.module.scss';
 
 const Home = () => {
-  // console.log('Home RENDERING!!!');
   const { todoList } = useTodo();
+  // console.log('Home Page', todoList);
 
   return (
     <div className={styles.container}>

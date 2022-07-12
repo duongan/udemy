@@ -8,7 +8,7 @@ const useTodo = () => {
   console.log('--useTodo--');
   const dispatch = useDispatch();
   const { sendRequest, isLoaded } = useHttp();
-  const todoList = useSelector((state) => state.todos);
+  const todoList = useSelector((state) => state.todo.todos);
 
   useEffect(() => {
     if (isLoaded) {
