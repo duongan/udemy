@@ -8,7 +8,7 @@ const Layout = (props) => {
     <>
       <div id="backdrop-root"></div>
       <div id="modal-root"></div>
-      {pathname !== '/login' && (
+      {pathname !== '/login' && pathname !== '/signup' && (
         <header>
           <Header />
         </header>

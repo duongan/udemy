@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link, useNavigate } from 'react-router-dom';
 import useAuth from '../../hooks/use-auth';
 import { UserActions } from '../../store/UserSlice';
 import { validateEmail, validatePassword } from '../../utilities';
@@ -9,6 +9,7 @@ import styles from './Login.module.scss';
 const Login = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const { userInfo: storedUserInfo } = useSelector((state) => state.user);
   const { signIn, userInfo, error: signInError } = useAuth();
   const [emailError, setEmailError] = useState('');
   const [passwordError, setPasswordError] = useState('');
@@ -17,7 +18,14 @@ const Login = () => {
   const passwordInputRef = useRef();
 
   useEffect(() => {
-    console.log('Login', userInfo);
+    // console.log('storedUserInfo', storedUserInfo);
+    if (storedUserInfo) {
+      navigate('/');
+    }
+  }, [storedUserInfo, navigate]);
+
+  useEffect(() => {
+    // console.log('userInfo', userInfo);
     if (userInfo) {
       dispatch(UserActions.saveUserInfo(userInfo));
       navigate('/');
@@ -53,7 +61,6 @@ const Login = () => {
   };
 
   const submitHandler = (e) => {
-    // console.log('Submitted!!!');
     e.preventDefault();
     const enteredUsername = emailInputRef.current.value;
     const enteredPassword = passwordInputRef.current.value;
@@ -61,54 +68,58 @@ const Login = () => {
     signIn(enteredUsername, enteredPassword);
   };
 
-  const emailEmpty =
-    !emailInputRef || !emailInputRef.current || !emailInputRef.current.value;
-  const passwordEmpty =
-    !passwordInputRef ||
-    !passwordInputRef.current ||
-    !passwordInputRef.current.value;
+  // const emailEmpty =
+  //   !emailInputRef || !emailInputRef.current || !emailInputRef.current.value;
+  // const passwordEmpty =
+  //   !passwordInputRef ||
+  //   !passwordInputRef.current ||
+  //   !passwordInputRef.current.value;
 
-  const disableButton =
-    emailEmpty || passwordEmpty || emailError || passwordError;
+  const disableButton = emailError || passwordError;
 
   return (
-    <div className={styles.container}>
-      <h1>MyTodo</h1>
-      <form name="signin_form" onSubmit={submitHandler} noValidate>
-        <div className={styles.control}>
-          <label htmlFor="username">Email</label>
-          <input
-            className={emailError && styles.invalid}
-            id="username"
-            name="username"
-            type="text"
-            required
-            ref={emailInputRef}
-            onChange={emailChangeHandler}
-          />
-          <p>{emailError && emailError}</p>
-        </div>
-        <div className={styles.control}>
-          <label htmlFor="password">Password</label>
-          <input
-            className={passwordError && styles.invalid}
-            id="password"
-            name="password"
-            type="password"
-            required
-            min={6}
-            ref={passwordInputRef}
-            onChange={passwordChangeHandler}
-          />
-          <p>{passwordError && passwordError}</p>
-        </div>
-        <div className={styles.buttonContainer}>
-          <button type="submit" disabled={disableButton}>
-            Log In
-          </button>
-        </div>
-      </form>
-    </div>
+    <form
+      className={styles.signInForm}
+      name="signin_form"
+      onSubmit={submitHandler}
+      noValidate
+    >
+      <div className={styles.control}>
+        <label htmlFor="username">Email</label>
+        <input
+          className={emailError && styles.invalid}
+          id="username"
+          name="username"
+          type="text"
+          required
+          ref={emailInputRef}
+          onChange={emailChangeHandler}
+        />
+        <p>{emailError && emailError}</p>
+      </div>
+      <div className={styles.control}>
+        <label htmlFor="password">Password</label>
+        <input
+          className={passwordError && styles.invalid}
+          id="password"
+          name="password"
+          type="password"
+          required
+          min={6}
+          ref={passwordInputRef}
+          onChange={passwordChangeHandler}
+        />
+        <p>{passwordError && passwordError}</p>
+      </div>
+      <div className={styles.buttonContainer}>
+        <button type="submit" disabled={disableButton}>
+          Log In
+        </button>
+      </div>
+      <div className={styles.control}>
+        <Link to={'/signup'}>Register new account?</Link>
+      </div>
+    </form>
   );
 };
 
