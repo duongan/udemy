@@ -17,8 +17,20 @@ const Todo = (props) => {
     setIsShow(true);
   };
 
+  const markAsDoneHandler = (e) => {
+    e.preventDefault();
+    const { id, name } = props;
+    const requestConfig = {
+      url: `${API_URL}/tasks/${userInfo.localId}/${id}.json?auth=${userInfo.idToken}`,
+      method: 'PUT',
+      data: { text: name, done: true },
+    };
+    sendRequest(requestConfig, () => {
+      dispatch(todoActions.update({ id, name, isDone: true }));
+    });
+  };
+
   const deleteTodo = () => {
-    console.log('Delete Task', props);
     const requestConfig = {
       url: `${API_URL}/tasks/${userInfo.localId}/${props.id}.json?auth=${userInfo.idToken}`,
       method: 'DELETE',
@@ -37,7 +49,17 @@ const Todo = (props) => {
       {isShow && <Modal onClose={closeModalHandler} onOk={deleteTodo} />}
       <input type="radio" />
       <span>{props.name}</span>
-      <a href="/" onClick={deleteHandler}>
+      {props.isDone && <span className={styles.completedLabel}>Done</span>}
+      {!props.isDone && (
+        <a
+          className={styles.markAsDoneBtn}
+          href="/"
+          onClick={markAsDoneHandler}
+        >
+          Mark as done
+        </a>
+      )}
+      <a className={styles.deleteBtn} href="/" onClick={deleteHandler}>
         Delete
       </a>
     </div>

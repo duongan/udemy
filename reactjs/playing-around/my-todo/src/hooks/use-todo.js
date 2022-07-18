@@ -18,7 +18,11 @@ const useTodo = () => {
     const transformData = (responsedData) => {
       const loadedTodos = [];
       for (const key in responsedData) {
-        loadedTodos.push({ id: key, name: responsedData[key].text });
+        loadedTodos.push({
+          id: key,
+          name: responsedData[key].text,
+          isDone: responsedData[key].done || false,
+        });
       }
       dispatch(todoActions.loadTodoList(loadedTodos));
     };
