@@ -1,14 +1,20 @@
-import { useEffect } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import useAuth from '../../hooks/use-auth';
 import { UserActions } from '../../store/UserSlice';
+import { validateEmail, validatePassword } from '../../utilities';
 import styles from './Login.module.scss';
 
 const Login = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { signIn, userInfo } = useAuth();
+  const { signIn, userInfo, error: signInError } = useAuth();
+  const [emailError, setEmailError] = useState('');
+  const [passwordError, setPasswordError] = useState('');
+
+  const emailInputRef = useRef();
+  const passwordInputRef = useRef();
 
   useEffect(() => {
     console.log('Login', userInfo);
@@ -18,23 +24,88 @@ const Login = () => {
     }
   }, [userInfo, dispatch, navigate]);
 
-  const submitHandler = (e) => {
-    e.preventDefault();
-    signIn('duongan@abc.com', '111111');
+  useEffect(() => {
+    const { field, message } = signInError || {};
+    if (field === 'email') {
+      setEmailError(message);
+    }
+    if (field === 'password') {
+      setPasswordError(message);
+    }
+  }, [signInError]);
+
+  const emailChangeHandler = () => {
+    const validationResult = validateEmail(emailInputRef.current.value);
+    if (validationResult) {
+      setEmailError(validationResult.message);
+    } else {
+      setEmailError('');
+    }
   };
+
+  const passwordChangeHandler = () => {
+    const validationResult = validatePassword(passwordInputRef.current.value);
+    if (validationResult) {
+      setPasswordError(validationResult.message);
+    } else {
+      setPasswordError('');
+    }
+  };
+
+  const submitHandler = (e) => {
+    // console.log('Submitted!!!');
+    e.preventDefault();
+    const enteredUsername = emailInputRef.current.value;
+    const enteredPassword = passwordInputRef.current.value;
+
+    signIn(enteredUsername, enteredPassword);
+  };
+
+  const emailEmpty =
+    !emailInputRef || !emailInputRef.current || !emailInputRef.current.value;
+  const passwordEmpty =
+    !passwordInputRef ||
+    !passwordInputRef.current ||
+    !passwordInputRef.current.value;
+
+  const disableButton =
+    emailEmpty || passwordEmpty || emailError || passwordError;
 
   return (
     <div className={styles.container}>
-      <form onSubmit={submitHandler}>
+      <form name="signin_form" onSubmit={submitHandler} noValidate>
         <div className={styles.control}>
-          <label htmlFor="username">Username</label>
-          <input id="username" name="username" type="text" />
+          <label htmlFor="username">Email</label>
+          <input
+            className={emailError && styles.invalid}
+            id="username"
+            name="username"
+            type="text"
+            required
+            ref={emailInputRef}
+            onChange={emailChangeHandler}
+          />
+          {emailError && <p>{emailError}</p>}
         </div>
         <div className={styles.control}>
           <label htmlFor="password">Password</label>
-          <input id="password" name="password" type="password" />
+          <input
+            className={passwordError && styles.invalid}
+            id="password"
+            name="password"
+            type="password"
+            required
+            min={6}
+            ref={passwordInputRef}
+            onChange={passwordChangeHandler}
+          />
+          {passwordError && <p>{passwordError}</p>}
         </div>
-        <button type="submit">Log In</button>
+        <div className={styles.buttonContainer}>
+          <button type="submit" disabled={disableButton}>
+            Log In
+          </button>
+        </div>
       </form>
     </div>
   );
