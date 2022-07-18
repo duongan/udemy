@@ -1,9 +1,13 @@
 .container {
-  // background-color: #e7f8f8;
-  // min-height: 100vh;
   display: flex;
+  flex-direction: column;
   justify-content: center;
-  // align-items: center;
+  min-height: 90vh;
+  align-items: center;
+
+  h1 {
+    margin: 0;
+  }
 
   form {
     background-color: #fff;
@@ -15,8 +19,8 @@
     .control {
       display: flex;
       flex-direction: column;
-      margin-bottom: 1rem;
-      min-width: 30vw;
+      margin-bottom: 0.8rem;
+      min-width: 20vw;
 
       label {
         margin-bottom: 0.5rem;
@@ -31,6 +35,7 @@
       }
 
       p {
+        height: 0.5rem;
         margin: 5px 0 0 0;
         font-size: 0.8rem;
         color: #ff0033;

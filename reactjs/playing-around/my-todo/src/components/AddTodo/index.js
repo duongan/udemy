@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { API_URL } from '../../constants';
 import useHttp from '../../hooks/use-http';
 import { todoActions } from '../../store/TodoSlice';
@@ -8,6 +8,7 @@ import styles from './AddTodo.module.scss';
 const AddTodo = () => {
   const dispatch = useDispatch();
   const { sendRequest } = useHttp();
+  const { userInfo } = useSelector((state) => state.user);
 
   const [taskName, setTaskName] = useState('');
 
@@ -23,7 +24,7 @@ const AddTodo = () => {
     }
     sendRequest(
       {
-        url: `${API_URL}/tasks.json`,
+        url: `${API_URL}/tasks/${userInfo.localId}.json?auth=${userInfo.idToken}`,
         method: 'POST',
         data: { text: taskName },
       },

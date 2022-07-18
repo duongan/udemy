@@ -9,6 +9,7 @@ const useTodo = () => {
   const dispatch = useDispatch();
   const { sendRequest, isLoaded } = useHttp();
   const todoList = useSelector((state) => state.todo.todos);
+  const { userInfo } = useSelector((state) => state.user);
 
   useEffect(() => {
     if (isLoaded) {
@@ -22,10 +23,10 @@ const useTodo = () => {
       dispatch(todoActions.loadTodoList(loadedTodos));
     };
     const requestConfig = {
-      url: `${API_URL}/tasks.json`,
+      url: `${API_URL}/tasks/${userInfo.localId}.json?auth=${userInfo.idToken}`,
     };
     sendRequest(requestConfig, transformData);
-  }, [sendRequest, isLoaded, dispatch]);
+  }, [sendRequest, isLoaded, dispatch, userInfo]);
 
   return {
     todoList,

@@ -31,8 +31,6 @@ const useAuth = () => {
       .then(
         (userCredential) => {
           const { _tokenResponse } = userCredential;
-          // console.log('userCredential', userCredential);
-          // console.log('_tokenResponse', _tokenResponse);
           localStorage.setItem('userInfo', JSON.stringify(_tokenResponse));
           setUserInfo(_tokenResponse);
         },

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { API_URL } from '../../constants';
 import useHttp from '../../hooks/use-http';
 import { todoActions } from '../../store/TodoSlice';
@@ -10,6 +10,7 @@ const Todo = (props) => {
   const [isShow, setIsShow] = useState(false);
   const dispatch = useDispatch();
   const { sendRequest } = useHttp();
+  const { userInfo } = useSelector((state) => state.user);
 
   const deleteHandler = (e) => {
     e.preventDefault();
@@ -19,7 +20,7 @@ const Todo = (props) => {
   const deleteTodo = () => {
     console.log('Delete Task', props);
     const requestConfig = {
-      url: `${API_URL}/tasks/${props.id}.json`,
+      url: `${API_URL}/tasks/${userInfo.localId}/${props.id}.json?auth=${userInfo.idToken}`,
       method: 'DELETE',
     };
     sendRequest(requestConfig, () => {

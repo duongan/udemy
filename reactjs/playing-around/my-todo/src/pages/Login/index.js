@@ -73,6 +73,7 @@ const Login = () => {
 
   return (
     <div className={styles.container}>
+      <h1>MyTodo</h1>
       <form name="signin_form" onSubmit={submitHandler} noValidate>
         <div className={styles.control}>
           <label htmlFor="username">Email</label>
@@ -85,7 +86,7 @@ const Login = () => {
             ref={emailInputRef}
             onChange={emailChangeHandler}
           />
-          {emailError && <p>{emailError}</p>}
+          <p>{emailError && emailError}</p>
         </div>
         <div className={styles.control}>
           <label htmlFor="password">Password</label>
@@ -99,7 +100,7 @@ const Login = () => {
             ref={passwordInputRef}
             onChange={passwordChangeHandler}
           />
-          {passwordError && <p>{passwordError}</p>}
+          <p>{passwordError && passwordError}</p>
         </div>
         <div className={styles.buttonContainer}>
           <button type="submit" disabled={disableButton}>

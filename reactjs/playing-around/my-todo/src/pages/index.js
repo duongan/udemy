@@ -2,13 +2,14 @@ import React, { Suspense, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Route, Routes, useNavigate } from 'react-router-dom';
 import { Layout } from '../components';
+import { FirebaseAuth } from '../firebase';
 import { UserActions } from '../store/UserSlice';
 
 const Home = React.lazy(() => import('./Home'));
 const Login = React.lazy(() => import('./Login'));
 
 const RootPage = () => {
-  console.log('Root Page...');
+  console.log('Root Page...', FirebaseAuth.currentUser);
   const dispatch = useDispatch();
   const isLogged = useSelector((state) => state.user.isLogged);
   const navigate = useNavigate();
