@@ -1,4 +1,7 @@
-import { signInWithEmailAndPassword } from 'firebase/auth';
+import {
+  signInWithEmailAndPassword,
+  createUserWithEmailAndPassword,
+} from 'firebase/auth';
 import { useCallback, useState } from 'react';
 import {
   AUTH_ERROR_MESSAGE,
@@ -52,8 +55,19 @@ const useAuth = () => {
       });
   }, []);
 
+  const signUp = useCallback((email, password) => {
+    createUserWithEmailAndPassword(FirebaseAuth, email, password)
+      .then((userCredential) => {
+        console.log('userCredential', userCredential);
+      })
+      .catch((error) => {
+        console.log('Sign up failed.');
+      });
+  }, []);
+
   return {
     signIn,
+    signUp,
     error,
     userInfo,
   };
