@@ -9,7 +9,6 @@ const Auth = () => {
   const { userInfo: storedUserInfo } = useSelector((state) => state.user);
 
   useEffect(() => {
-    console.log('Auth-storedUserInfo', storedUserInfo);
     if (storedUserInfo) {
       navigate('/');
     }

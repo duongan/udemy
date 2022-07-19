@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import useAuth from '../../hooks/use-auth';
 import { UserActions } from '../../store/UserSlice';
@@ -9,7 +9,6 @@ import styles from './Login.module.scss';
 const Login = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  // const { userInfo: storedUserInfo } = useSelector((state) => state.user);
   const { signIn, userInfo, error: signInError } = useAuth();
   const [emailError, setEmailError] = useState('');
   const [passwordError, setPasswordError] = useState('');
@@ -17,15 +16,7 @@ const Login = () => {
   const emailInputRef = useRef();
   const passwordInputRef = useRef();
 
-  // useEffect(() => {
-  //   // console.log('storedUserInfo', storedUserInfo);
-  //   if (storedUserInfo) {
-  //     navigate('/');
-  //   }
-  // }, [storedUserInfo, navigate]);
-
   useEffect(() => {
-    // console.log('userInfo', userInfo);
     if (userInfo) {
       dispatch(UserActions.saveUserInfo(userInfo));
       navigate('/');
@@ -95,7 +86,7 @@ const Login = () => {
           ref={emailInputRef}
           onChange={emailChangeHandler}
         />
-        <p>{emailError && emailError}</p>
+        <p>{emailError}</p>
       </div>
       <div className={styles.control}>
         <label htmlFor="password">Password</label>
@@ -109,7 +100,7 @@ const Login = () => {
           ref={passwordInputRef}
           onChange={passwordChangeHandler}
         />
-        <p>{passwordError && passwordError}</p>
+        <p>{passwordError}</p>
       </div>
       <div className={styles.buttonContainer}>
         <button type="submit" disabled={disableButton}>

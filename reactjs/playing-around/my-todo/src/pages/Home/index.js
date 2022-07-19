@@ -5,7 +5,6 @@ import styles from './Home.module.scss';
 
 const Home = () => {
   const { todoList } = useTodo();
-  // console.log('Home Page', todoList);
 
   return (
     <div className={styles.container}>

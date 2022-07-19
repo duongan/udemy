@@ -5,6 +5,7 @@ import {
 import { useCallback, useState } from 'react';
 import {
   AUTH_ERROR_MESSAGE,
+  EMAIL_IN_USE_CODE,
   INVALID_EMAIL_CODE,
   INVALID_PASSWORD_CODE,
   USER_NOT_FOUND_CODE,
@@ -38,7 +39,6 @@ const useAuth = () => {
           setUserInfo(_tokenResponse);
         },
         (rejected) => {
-          console.log('rejected.code', rejected.code);
           const field =
             rejected.code === INVALID_EMAIL_CODE ||
             rejected.code === USER_NOT_FOUND_CODE
@@ -57,11 +57,20 @@ const useAuth = () => {
 
   const signUp = useCallback((email, password) => {
     createUserWithEmailAndPassword(FirebaseAuth, email, password)
-      .then((userCredential) => {
-        console.log('userCredential', userCredential);
-      })
+      .then(
+        (userCredential) => {
+          const { _tokenResponse } = userCredential;
+          localStorage.setItem('userInfo', JSON.stringify(_tokenResponse));
+          setUserInfo(_tokenResponse);
+        },
+        (rejected) => {
+          const field = rejected.code === EMAIL_IN_USE_CODE ? 'email' : '';
+          setError({ message: AUTH_ERROR_MESSAGE[rejected.code] || '', field });
+        }
+      )
       .catch((error) => {
-        console.log('Sign up failed.');
+        console.log('Sign up failed.', error);
+        setError({ message: 'Sign up failed!' });
       });
   }, []);
 

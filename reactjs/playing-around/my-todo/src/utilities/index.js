@@ -20,3 +20,22 @@ export const validatePassword = (password = '') => {
   }
   return null;
 };
+
+export const validateRepassword = (repassword = '', password = '') => {
+  if (repassword === '') {
+    return { message: 'Re-password is required.', field: 're-password' };
+  }
+  if (repassword.length < 6) {
+    return {
+      message: 'Re-password must be more than 5 characters.',
+      field: 're-password',
+    };
+  }
+  if (repassword !== password) {
+    return {
+      message: 'Re-password does not match.',
+      field: 're-password',
+    };
+  }
+  return null;
+};

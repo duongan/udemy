@@ -21,7 +21,6 @@ const TodoSlice = createSlice({
       const idx = state.todos.findIndex(
         (item) => item.id === action.payload.id
       );
-      console.log('UPDATE', idx, action);
       if (idx > -1) {
         state.todos[idx].isDone = action.payload.isDone;
       }

@@ -42,21 +42,26 @@ form.signupForm {
       cursor: pointer;
       width: 4.5rem;
       align-self: center;
-      background: rgba(0, 128, 128, 0.5);
+      background: rgba(0, 128, 128, 1);
       border: none;
       border-radius: 4px;
       color: white;
 
       &:hover {
-        background: rgba(0, 128, 128, 1);
         box-shadow: 2px 2px 2px rgb(0 128 128 / 30%);
       }
 
       &:disabled {
         background: rgba(0, 128, 128, 0.5);
+        box-shadow: none;
         cursor: not-allowed;
       }
     }
+  }
+
+  .invalid {
+    border-color: #ff0033 !important;
+    background-color: rgba($color: #ff0033, $alpha: 0.1);
   }
 
   > div:last-of-type {

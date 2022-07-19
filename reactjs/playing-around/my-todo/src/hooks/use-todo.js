@@ -5,7 +5,6 @@ import useHttp from './use-http';
 import { API_URL } from '../constants';
 
 const useTodo = () => {
-  console.log('--useTodo--');
   const dispatch = useDispatch();
   const { sendRequest, isLoaded } = useHttp();
   const todoList = useSelector((state) => state.todo.todos);

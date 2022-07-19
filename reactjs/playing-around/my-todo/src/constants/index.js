@@ -4,9 +4,11 @@ export const API_URL =
 export const INVALID_EMAIL_CODE = 'auth/invalid-email';
 export const INVALID_PASSWORD_CODE = 'auth/wrong-password';
 export const USER_NOT_FOUND_CODE = 'auth/user-not-found';
+export const EMAIL_IN_USE_CODE = 'auth/email-already-in-use';
 
 export const AUTH_ERROR_MESSAGE = {
   [INVALID_EMAIL_CODE]: 'Email does not exist.',
   [INVALID_PASSWORD_CODE]: 'Password is not correct.',
   [USER_NOT_FOUND_CODE]: 'Email does not exist.',
+  [EMAIL_IN_USE_CODE]: 'This email is alreay in use.',
 };
