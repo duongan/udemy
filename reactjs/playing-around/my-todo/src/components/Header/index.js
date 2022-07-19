@@ -18,7 +18,7 @@ const Header = () => {
   return (
     <div className={styles.container}>
       <div className={styles.brand} onClick={clickLogoHandler}>
-        My Todo
+        MyTodo
       </div>
       <div></div>
       <div className={styles.uname} onClick={logout}>

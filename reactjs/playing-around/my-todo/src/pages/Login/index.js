@@ -9,7 +9,7 @@ import styles from './Login.module.scss';
 const Login = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { userInfo: storedUserInfo } = useSelector((state) => state.user);
+  // const { userInfo: storedUserInfo } = useSelector((state) => state.user);
   const { signIn, userInfo, error: signInError } = useAuth();
   const [emailError, setEmailError] = useState('');
   const [passwordError, setPasswordError] = useState('');
@@ -17,12 +17,12 @@ const Login = () => {
   const emailInputRef = useRef();
   const passwordInputRef = useRef();
 
-  useEffect(() => {
-    // console.log('storedUserInfo', storedUserInfo);
-    if (storedUserInfo) {
-      navigate('/');
-    }
-  }, [storedUserInfo, navigate]);
+  // useEffect(() => {
+  //   // console.log('storedUserInfo', storedUserInfo);
+  //   if (storedUserInfo) {
+  //     navigate('/');
+  //   }
+  // }, [storedUserInfo, navigate]);
 
   useEffect(() => {
     // console.log('userInfo', userInfo);

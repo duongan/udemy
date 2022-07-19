@@ -1,8 +1,19 @@
-import { Outlet, useLocation } from 'react-router-dom';
+import { useEffect } from 'react';
+import { useSelector } from 'react-redux';
+import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 import styles from './Auth.module.scss';
 
 const Auth = () => {
+  const navigate = useNavigate();
   const { pathname } = useLocation();
+  const { userInfo: storedUserInfo } = useSelector((state) => state.user);
+
+  useEffect(() => {
+    console.log('Auth-storedUserInfo', storedUserInfo);
+    if (storedUserInfo) {
+      navigate('/');
+    }
+  }, [storedUserInfo, navigate]);
 
   return (
     <div className={styles.container}>
