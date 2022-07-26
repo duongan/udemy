@@ -35,6 +35,8 @@ const useAuth = () => {
       .then(
         (userCredential) => {
           const { _tokenResponse } = userCredential;
+          const { expiresIn } = _tokenResponse;
+          _tokenResponse.expiresAt = Date.now() + expiresIn * 1000;
           localStorage.setItem('userInfo', JSON.stringify(_tokenResponse));
           setUserInfo(_tokenResponse);
         },
@@ -60,6 +62,8 @@ const useAuth = () => {
       .then(
         (userCredential) => {
           const { _tokenResponse } = userCredential;
+          const { expiresIn } = _tokenResponse;
+          _tokenResponse.expiresAt = Date.now() + expiresIn * 1000;
           localStorage.setItem('userInfo', JSON.stringify(_tokenResponse));
           setUserInfo(_tokenResponse);
         },
