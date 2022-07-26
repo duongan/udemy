@@ -8,7 +8,7 @@ import {
   validateRepassword,
 } from '../../utilities';
 import styles from './Signup.module.scss';
-import { UserActions } from '../../store/UserSlice';
+import { logIn } from '../../store/thunkActionCreators';
 
 const Signup = () => {
   const navigate = useNavigate();
@@ -32,7 +32,7 @@ const Signup = () => {
 
   useEffect(() => {
     if (userInfo) {
-      dispatch(UserActions.saveUserInfo(userInfo));
+      dispatch(logIn(userInfo));
       navigate('/');
     }
   }, [userInfo, navigate, dispatch]);

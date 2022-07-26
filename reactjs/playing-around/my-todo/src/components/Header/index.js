@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { UserActions } from '../../store/UserSlice';
+import { logOut } from '../../store/thunkActionCreators';
 import styles from './Header.module.scss';
 
 const Header = () => {
@@ -11,8 +11,7 @@ const Header = () => {
     navigate('/');
   };
   const logout = () => {
-    dispatch(UserActions.logout());
-    localStorage.removeItem('userInfo');
+    dispatch(logOut());
   };
 
   return (

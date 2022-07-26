@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import useAuth from '../../hooks/use-auth';
-import { UserActions } from '../../store/UserSlice';
+import { logIn } from '../../store/thunkActionCreators';
 import { validateEmail, validatePassword } from '../../utilities';
 import styles from './Login.module.scss';
 
@@ -18,7 +18,7 @@ const Login = () => {
 
   useEffect(() => {
     if (userInfo) {
-      dispatch(UserActions.saveUserInfo(userInfo));
+      dispatch(logIn(userInfo));
       navigate('/');
     }
   }, [userInfo, dispatch, navigate]);

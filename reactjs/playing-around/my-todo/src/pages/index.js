@@ -2,7 +2,7 @@ import React, { Suspense, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Route, Routes, useNavigate, useLocation } from 'react-router-dom';
 import { Layout } from '../components';
-import { UserActions } from '../store/UserSlice';
+import { logIn } from '../store/thunkActionCreators';
 import Auth from './Auth';
 
 const Home = React.lazy(() => import('./Home'));
@@ -18,7 +18,7 @@ const RootPage = () => {
   useEffect(() => {
     const userInfo = JSON.parse(localStorage.getItem('userInfo'));
     if (userInfo) {
-      dispatch(UserActions.saveUserInfo(userInfo));
+      dispatch(logIn(userInfo));
     } else if (!isLogged) {
       if (pathname === '/signup') {
         navigate(pathname);
