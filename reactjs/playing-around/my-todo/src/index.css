@@ -1,18 +1,33 @@
+@font-face {
+  font-family: 'EduVICWANTBeginner';
+  src: url('./assets/fonts/EduVICWANTBeginner-VariableFont_wght.ttf')
+    format('truetype');
+}
+
+@font-face {
+  font-family: 'DancingScript';
+  src: url('./assets/fonts/DancingScript-VariableFont_wght.ttf')
+    format('truetype');
+}
+
 * {
   box-sizing: border-box;
 }
 
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: 'DancingScript', 'EduVICWANTBeginner', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: #e7f8f8;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+::-webkit-input-placeholder {
+  font-family: 'DancingScript';
+}
+::-moz-placeholder {
+  font-family: 'DancingScript';
+}
+::-ms-input-placeholder {
+  font-family: 'DancingScript';
 }
