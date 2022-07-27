@@ -23,7 +23,7 @@ const Todo = (props) => {
     const requestConfig = {
       url: `${API_URL}/tasks/${userInfo.localId}/${id}.json?auth=${userInfo.idToken}`,
       method: 'PUT',
-      data: { text: name, done: true },
+      data: { text: name, done: true, updatedDate: Date.now() },
     };
     sendRequest(requestConfig, () => {
       dispatch(todoActions.update({ id, name, isDone: true }));

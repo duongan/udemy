@@ -26,7 +26,7 @@ const AddTodo = () => {
       {
         url: `${API_URL}/tasks/${userInfo.localId}.json?auth=${userInfo.idToken}`,
         method: 'POST',
-        data: { text: taskName },
+        data: { text: taskName, createdDate: Date.now() },
       },
       (responsedData) => {
         dispatch(todoActions.add({ name: taskName, id: responsedData.name }));
