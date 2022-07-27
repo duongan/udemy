@@ -1,13 +1,6 @@
 @font-face {
-  font-family: 'EduVICWANTBeginner';
-  src: url('./assets/fonts/EduVICWANTBeginner-VariableFont_wght.ttf')
-    format('truetype');
-}
-
-@font-face {
-  font-family: 'DancingScript';
-  src: url('./assets/fonts/DancingScript-VariableFont_wght.ttf')
-    format('truetype');
+  font-family: 'RobotoMono';
+  src: url('./assets/fonts/RobotoMono-Italic-VariableFont_wght.ttf');
 }
 
 * {
@@ -16,18 +9,28 @@
 
 body {
   margin: 0;
-  font-family: 'DancingScript', 'EduVICWANTBeginner', sans-serif;
+  font-family: 'RobotoMono', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: #e7f8f8;
 }
 
 ::-webkit-input-placeholder {
-  font-family: 'DancingScript';
+  /* Chrome/Opera/Safari */
+  font-family: 'RobotoMono';
 }
+
 ::-moz-placeholder {
-  font-family: 'DancingScript';
+  /* Firefox 19+ */
+  font-family: 'RobotoMono';
 }
-::-ms-input-placeholder {
-  font-family: 'DancingScript';
+
+:-ms-input-placeholder {
+  /* IE 10+ */
+  font-family: 'RobotoMono';
+}
+
+:-moz-placeholder {
+  /* Firefox 18- */
+  font-family: 'RobotoMono';
 }

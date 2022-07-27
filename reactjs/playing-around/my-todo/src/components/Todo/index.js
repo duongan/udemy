@@ -1,5 +1,8 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+// import { faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faTrashCan } from '@fortawesome/free-regular-svg-icons';
 import { API_URL } from '../../constants';
 import useHttp from '../../hooks/use-http';
 import { todoActions } from '../../store/TodoSlice';
@@ -67,7 +70,7 @@ const Todo = (props) => {
         </a>
       )}
       <a className={styles.deleteBtn} href="/" onClick={deleteHandler}>
-        Delete
+        <FontAwesomeIcon icon={faTrashCan} />
       </a>
     </div>
   );
