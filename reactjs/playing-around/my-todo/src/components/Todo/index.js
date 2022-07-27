@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { API_URL } from '../../constants';
 import useHttp from '../../hooks/use-http';
 import { todoActions } from '../../store/TodoSlice';
-import Modal from '../Modal';
+import ConfirmDeleteModal from '../ConfirmDeleteModal';
 import styles from './Todo.module.scss';
 
 const Todo = (props) => {
@@ -44,9 +44,16 @@ const Todo = (props) => {
     setIsShow(false);
   };
 
+  const modalProps = {
+    onClose: closeModalHandler,
+    onOk: deleteTodo,
+    title: 'Warning',
+    message: 'Are you sure you want to delete it?',
+  };
+
   return (
     <div className={styles.container}>
-      {isShow && <Modal onClose={closeModalHandler} onOk={deleteTodo} />}
+      {isShow && <ConfirmDeleteModal {...modalProps} />}
       <input type="radio" />
       <span>{props.name}</span>
       {props.isDone && <span className={styles.completedLabel}>Done</span>}

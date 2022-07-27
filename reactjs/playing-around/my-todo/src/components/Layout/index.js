@@ -6,7 +6,6 @@ const Layout = (props) => {
   const { pathname } = useLocation();
   return (
     <>
-      <div id="backdrop-root"></div>
       <div id="modal-root"></div>
       {pathname !== '/login' && pathname !== '/signup' && (
         <header>

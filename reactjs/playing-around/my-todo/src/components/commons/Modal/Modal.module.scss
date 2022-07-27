@@ -1,0 +1,44 @@
+.overlayContainer {
+  display: flex;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba($color: #000000, $alpha: 0.4);
+  .modal {
+    background-color: #fff;
+    z-index: 100;
+    border-radius: 4px;
+
+    > div {
+      padding: 0 2rem;
+    }
+
+    .header {
+      padding: 1rem;
+      font-weight: bold;
+    }
+
+    .content {
+      padding: 1rem;
+    }
+
+    .footer {
+      display: flex;
+      justify-content: flex-end;
+      padding: 1rem;
+
+      > button {
+        cursor: pointer;
+        border: none;
+        border-radius: 4px;
+        padding: 0.5rem 1rem;
+      }
+
+      > button:first-of-type {
+        margin-right: 0.5rem;
+      }
+    }
+  }
+}

@@ -1,0 +1,14 @@
+.cancelBtn {
+  &:hover {
+    background-color: rgba($color: #000000, $alpha: 0.2);
+  }
+}
+
+.deleteBtn {
+  color: #fff;
+  background-color: #db3a29;
+
+  &:hover {
+    background-color: #af2e20;
+  }
+}
