@@ -19,7 +19,6 @@ const Header = () => {
   };
 
   const clickUserIconHandler = () => {
-    console.log('tai day 111');
     setShowProfilePopover(!showProfilePopover);
   };
 

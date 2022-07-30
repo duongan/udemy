@@ -15,6 +15,10 @@ body {
   background-color: #e7f8f8;
 }
 
+input[type='text'] {
+  font-family: 'RobotoMono';
+}
+
 ::-webkit-input-placeholder {
   /* Chrome/Opera/Safari */
   font-family: 'RobotoMono';

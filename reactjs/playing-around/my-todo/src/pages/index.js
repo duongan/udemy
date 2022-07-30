@@ -2,6 +2,7 @@ import React, { Suspense, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Route, Routes, useNavigate, useLocation } from 'react-router-dom';
 import { Layout } from '../components';
+import GlobalSpinner from '../components/commons/GlobalSpinner';
 import { logIn } from '../store/thunkActionCreators';
 import Auth from './Auth';
 
@@ -30,11 +31,9 @@ const RootPage = () => {
     }
   }, [isLogged, navigate, dispatch, pathname]);
 
-  const fallbackEl = <div className="centered">Loadding...</div>;
-
   return (
     <Layout>
-      <Suspense fallback={fallbackEl}>
+      <Suspense fallback={<GlobalSpinner />}>
         <Routes>
           <Route index path="/" element={<Home />} />
           <Route path="/" element={<Auth />}>
