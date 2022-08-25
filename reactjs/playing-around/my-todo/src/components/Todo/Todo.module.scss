@@ -31,7 +31,7 @@
     color: rgba($color: #000, $alpha: 0.5);
     font-size: 0.8rem;
     margin-right: 1rem;
-    border: 1px solid rgba(0, 0, 0, .2);
+    border: 1px solid rgba(0, 0, 0, 0.2);
     border-radius: 4px;
     padding: 2px 8px;
   }
@@ -45,9 +45,9 @@
     color: red;
     border-color: red;
   }
-}
 
-// .container:hover {
-//   background-color: rgba($color: #000, $alpha: 0.1);
-//   cursor: pointer;
-// }
+  &:hover {
+    background-color: rgba($color: #000, $alpha: 0.1);
+    cursor: pointer;
+  }
+}

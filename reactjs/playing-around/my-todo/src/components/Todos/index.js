@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import Todo from '../Todo';
 import styles from './Todos.module.scss';
 
@@ -18,6 +19,10 @@ const Todos = (props) => {
       {items.length ? renderList() : renderEmpty()}
     </div>
   );
+};
+
+Todos.propTypes = {
+  items: PropTypes.array.isRequired,
 };
 
 export default Todos;
