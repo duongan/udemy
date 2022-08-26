@@ -5,22 +5,21 @@ const adminData = require('./routes/admin');
 const shopRoutes = require('./routes/shop');
 
 const bodyParser = require('body-parser');
-const expressHbs = require('express-handlebars');
-
-// console.log('expressHbs', expressHbs);
+// const expressHbs = require('express-handlebars');
 
 const app = express();
 
-app.engine(
-  'hbs',
-  expressHbs.engine({
-    extname: 'hbs',
-    layoutsDir: 'views/layouts/',
-    defaultLayout: 'main-layout',
-  })
-);
-app.set('view engine', 'hbs');
+// app.engine(
+//   'hbs',
+//   expressHbs.engine({
+//     extname: 'hbs',
+//     layoutsDir: 'views/layouts/',
+//     defaultLayout: 'main-layout',
+//   })
+// );
+// app.set('view engine', 'hbs');
 // app.set('view engine', 'pug');
+app.set('view engine', 'ejs');
 app.set('views', 'views');
 
 app.use(bodyParser.urlencoded({ extended: false }));
