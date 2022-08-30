@@ -168,7 +168,8 @@ exports.postDeleteProduct = (req, res, next) => {
   //   .then((product) => {
   //     return product.destroy();
   //   })
-  Product.deleteById(prodId)
+  // Product.deleteById(prodId)
+  Product.findByIdAndRemove(prodId)
     .then(() => {
       res.redirect('/admin/products');
     })
