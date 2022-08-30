@@ -2,7 +2,7 @@ const path = require('path');
 const express = require('express');
 
 const adminRoutes = require('./routes/admin');
-// const shopRoutes = require('./routes/shop');
+const shopRoutes = require('./routes/shop');
 
 const bodyParser = require('body-parser');
 // const expressHbs = require('express-handlebars');
@@ -48,7 +48,7 @@ app.use((req, res, next) => {
 });
 
 app.use('/admin', adminRoutes);
-// app.use(shopRoutes);
+app.use(shopRoutes);
 
 app.use(errorController.get404);
 
