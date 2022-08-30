@@ -112,15 +112,23 @@ exports.postEditProduct = (req, res, next) => {
   //     product.imageUrl = updatedImageUrl;
   //     return product.save();
   //   })
-  const product = new Product(
-    updatedTitle,
-    updatedPrice,
-    updatedDescription,
-    updatedImageUrl,
-    prodId
-  );
-  product
-    .save()
+  // const product = new Product(
+  //   updatedTitle,
+  //   updatedPrice,
+  //   updatedDescription,
+  //   updatedImageUrl,
+  //   prodId
+  // );
+  Product.findById(prodId)
+    .then((product) => {
+      product.title = updatedTitle;
+      product.price = updatedPrice;
+      product.description = updatedDescription;
+      product.imageUrl = updatedImageUrl;
+      return product.save();
+    })
+    // product
+    // .save()
     .then((result) => {
       res.redirect('/admin/products');
     })
@@ -141,7 +149,8 @@ exports.getProducts = (req, res, next) => {
   // req.user
   // .getProducts()
   // Product.findAll()
-  Product.fetchAll()
+  // Product.fetchAll()
+  Product.find()
     .then((products) => {
       res.render('admin/products', {
         prods: products,
