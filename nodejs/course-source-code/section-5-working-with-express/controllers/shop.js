@@ -23,7 +23,8 @@ exports.getProducts = (req, res, next) => {
   //   .catch((err) => console.log(err));
 
   // Product.findAll()
-  Product.fetchAll()
+  // Product.fetchAll()
+  Product.find()
     .then((products) => {
       res.render('shop/product-list', {
         prods: products,
@@ -99,7 +100,8 @@ exports.getIndex = (req, res, next) => {
   //   .catch((err) => console.log(err));
 
   // Product.findAll()
-  Product.fetchAll()
+  // Product.fetchAll()
+  Product.find()
     .then((products) => {
       res.render('shop/index', {
         prods: products,
