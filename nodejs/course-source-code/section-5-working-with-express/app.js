@@ -1,5 +1,6 @@
 const path = require('path');
 const express = require('express');
+const mongoose = require('mongoose');
 
 const adminRoutes = require('./routes/admin');
 const shopRoutes = require('./routes/shop');
@@ -16,7 +17,7 @@ const errorController = require('./controllers/error');
 // const Order = require('./models/order');
 // const OrderItem = require('./models/order-item');
 
-const mongoConnect = require('./util/database').mongoConnect;
+// const mongoConnect = require('./util/database').mongoConnect;
 const User = require('./models/user');
 
 const app = express();
@@ -39,15 +40,15 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use((req, res, next) => {
   // User.findByPk(1)
-  User.findById('630d7ffc01dd6d20bd75788e')
-    .then((user) => {
-      // req.user = user;
-      req.user = new User(user.name, user.email, user.cart, user._id);
-      next();
-    })
-    .catch((err) => console.log(err));
+  // User.findById('630d7ffc01dd6d20bd75788e')
+  //   .then((user) => {
+  //     // req.user = user;
+  //     req.user = new User(user.name, user.email, user.cart, user._id);
+  //     next();
+  //   })
+  //   .catch((err) => console.log(err));
 
-  // next();
+  next();
 });
 
 app.use('/admin', adminRoutes);
@@ -55,9 +56,18 @@ app.use(shopRoutes);
 
 app.use(errorController.get404);
 
-mongoConnect(() => {
-  app.listen(3000);
-});
+// mongoConnect(() => {
+//   app.listen(3000);
+// });
+
+mongoose
+  .connect(
+    'mongodb+srv://andt_learning:F5zDpHO6ZROiSZUT@cluster0.l89rk.mongodb.net/shop?retryWrites=true&w=majority'
+  )
+  .then(() => {
+    app.listen(3000);
+  })
+  .catch((err) => console.log(err));
 
 // Product.belongsTo(User, { constraints: true, onDelete: 'CASCADE' });
 // User.hasMany(Product);
