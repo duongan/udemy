@@ -41,7 +41,8 @@ app.use((req, res, next) => {
   // User.findByPk(1)
   User.findById('630d7ffc01dd6d20bd75788e')
     .then((user) => {
-      req.user = user;
+      // req.user = user;
+      req.user = new User(user.name, user.email, user.cart, user._id);
       next();
     })
     .catch((err) => console.log(err));
