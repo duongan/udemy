@@ -1,5 +1,6 @@
 const Product = require('../models/product');
 // const Cart = require('../models/cart');
+const Order = require('../models/order');
 
 exports.getProducts = (req, res, next) => {
   // Product.fetchAll((products) => {
@@ -113,8 +114,24 @@ exports.getIndex = (req, res, next) => {
 };
 
 exports.postOrder = (req, res, next) => {
-  // let fetchedCart;
   req.user
+    .populate('cart.items.productId')
+    .then(({ cart: { items } }) => {
+      const products = items.map((i) => ({
+        quantity: i.quantity,
+        product: i.productId,
+      }));
+      const order = new Order({
+        user: {
+          name: req.user.name,
+          userId: req.user,
+        },
+        products,
+      });
+      return order.save();
+    })
+    // let fetchedCart;
+    // req.user
     // .getCart()
     // .then((cart) => {
     //   fetchedCart = cart;
@@ -136,7 +153,7 @@ exports.postOrder = (req, res, next) => {
     // .then((result) => {
     //   return fetchedCart.setProducts(null);
     // })
-    .addOrder()
+    // .addOrder()
     .then(() => {
       res.redirect('/orders');
     })
@@ -263,11 +280,4 @@ exports.postCartDeleteProduct = (req, res, next) => {
       res.redirect('/cart');
     })
     .catch((err) => console.log(err));
-};
-
-exports.getCheckout = (req, res, next) => {
-  res.render('shop/checkout', {
-    path: '/checkout',
-    pageTitle: 'Checkout',
-  });
 };
