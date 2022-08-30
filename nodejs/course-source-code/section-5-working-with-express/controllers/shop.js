@@ -177,11 +177,14 @@ exports.getCart = (req, res, next) => {
   //   });
   // });
   req.user
-    .getCart()
+    .populate('cart.items.productId')
+    // .getCart()
     // .then((cart) => {
     //   return cart.getProducts();
     // })
-    .then((products) => {
+    // .then((products) => {
+    .then(({ cart }) => {
+      const products = cart.items;
       res.render('shop/cart', {
         path: '/cart',
         pageTitle: 'Your Cart',
