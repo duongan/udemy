@@ -1,4 +1,7 @@
+const mongodb = require('mongodb');
 const Product = require('../models/product');
+
+const ObjectId = mongodb.ObjectId;
 
 exports.getAddProduct = (req, res, next) => {
   res.render('admin/edit-product', {
@@ -60,11 +63,12 @@ exports.getEditProduct = (req, res, next) => {
   //     product,
   //   });
   // });
-  req.user
-    .getProducts({ where: { id: prodId } })
-    // Product.findByPk(prodId)
-    // .then((product) => {
-    .then(([product]) => {
+  // req.user
+  // .getProducts({ where: { id: prodId } })
+  // Product.findByPk(prodId)
+  Product.findById(prodId)
+    .then((product) => {
+      // .then(([product]) => {
       if (!product) {
         return res.redirect('/');
       }
@@ -94,14 +98,24 @@ exports.postEditProduct = (req, res, next) => {
   // );
   // updatedProduct.save();
 
-  Product.findByPk(prodId)
-    .then((product) => {
-      product.title = updatedTitle;
-      product.price = updatedPrice;
-      product.description = updatedDescription;
-      product.imageUrl = updatedImageUrl;
-      return product.save();
-    })
+  // Product.findByPk(prodId)
+  // Product.findById(prodId)
+  //   .then((product) => {
+  //     product.title = updatedTitle;
+  //     product.price = updatedPrice;
+  //     product.description = updatedDescription;
+  //     product.imageUrl = updatedImageUrl;
+  //     return product.save();
+  //   })
+  const product = new Product(
+    updatedTitle,
+    updatedPrice,
+    updatedDescription,
+    updatedImageUrl,
+    new ObjectId(prodId)
+  );
+  product
+    .save()
     .then((result) => {
       res.redirect('/admin/products');
     })
@@ -119,9 +133,10 @@ exports.getProducts = (req, res, next) => {
   //   });
   // });
 
-  req.user
-    .getProducts()
-    // Product.findAll()
+  // req.user
+  // .getProducts()
+  // Product.findAll()
+  Product.fetchAll()
     .then((products) => {
       res.render('admin/products', {
         prods: products,
