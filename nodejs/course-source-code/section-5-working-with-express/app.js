@@ -18,7 +18,7 @@ const errorController = require('./controllers/error');
 // const OrderItem = require('./models/order-item');
 
 // const mongoConnect = require('./util/database').mongoConnect;
-// const User = require('./models/user');
+const User = require('./models/user');
 
 const app = express();
 
@@ -40,15 +40,13 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use((req, res, next) => {
   // User.findByPk(1)
-  // User.findById('630d7ffc01dd6d20bd75788e')
-  //   .then((user) => {
-  //     // req.user = user;
-  //     req.user = new User(user.name, user.email, user.cart, user._id);
-  //     next();
-  //   })
-  //   .catch((err) => console.log(err));
-
-  next();
+  User.findById('630da8b54879f3358fbe4e53')
+    .then((user) => {
+      req.user = user;
+      // req.user = new User(user.name, user.email, user.cart, user._id);
+      next();
+    })
+    .catch((err) => console.log(err));
 });
 
 app.use('/admin', adminRoutes);
@@ -65,6 +63,16 @@ mongoose
     'mongodb+srv://andt_learning:F5zDpHO6ZROiSZUT@cluster0.l89rk.mongodb.net/shop?retryWrites=true&w=majority'
   )
   .then(() => {
+    User.findOne().then((user) => {
+      if (!user) {
+        const user = new User({
+          name: 'An Duong',
+          email: 'an.duong@test.com',
+          cart: { items: [] },
+        });
+        user.save();
+      }
+    });
     app.listen(3000);
   })
   .catch((err) => console.log(err));
