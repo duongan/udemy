@@ -18,7 +18,7 @@ const errorController = require('./controllers/error');
 // const OrderItem = require('./models/order-item');
 
 // const mongoConnect = require('./util/database').mongoConnect;
-const User = require('./models/user');
+// const User = require('./models/user');
 
 const app = express();
 

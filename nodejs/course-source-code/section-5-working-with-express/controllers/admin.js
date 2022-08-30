@@ -34,14 +34,15 @@ exports.postAddProduct = (req, res, next) => {
   //   userId: req.user.id
   // })
 
-  const product = new Product(
-    title,
-    price,
-    description,
-    imageUrl,
-    null,
-    req.user._id
-  );
+  // const product = new Product(
+  //   title,
+  //   price,
+  //   description,
+  //   imageUrl,
+  //   null,
+  //   req.user._id
+  // );
+  const product = new Product({ title, price, description, imageUrl });
   product
     .save()
     .then((result) => {
