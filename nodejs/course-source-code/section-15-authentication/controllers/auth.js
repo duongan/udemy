@@ -145,6 +145,7 @@ exports.postReset = (req, res, next) => {
         return user.save();
       })
       .then((result) => {
+        console.log(`http://localhost:3000/reset/${token}`);
         res.redirect('/');
         // transporter.sendMail({
         //   to: email,
