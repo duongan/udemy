@@ -16,7 +16,6 @@ exports.getAddProduct = (req, res, next) => {
 exports.postAddProduct = (req, res, next) => {
   const title = req.body.title;
   const image = req.file;
-  console.log(image);
   const price = req.body.price;
   const description = req.body.description;
   if (!image) {
@@ -44,7 +43,6 @@ exports.postAddProduct = (req, res, next) => {
       hasError: true,
       product: {
         title,
-        imageUrl,
         price,
         description,
       },
