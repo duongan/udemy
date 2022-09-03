@@ -26,7 +26,7 @@ const fileFilter = (req, file, cb) => {
   ) {
     cb(null, true);
   } else {
-    cb(null, true);
+    cb(null, false);
   }
 };
 
