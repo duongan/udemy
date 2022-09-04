@@ -1,4 +1,6 @@
 const path = require('path');
+const { createServer } = require('http');
+const { Server } = require('socket.io');
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
@@ -9,6 +11,15 @@ const feedRoutes = require('./routes/feed');
 const authRoutes = require('./routes/auth');
 
 const app = express();
+const httpServer = createServer(app);
+const io = new Server(httpServer, {
+  cors: {
+    origin: '*',
+  },
+});
+io.on('connection', (socket) => {
+  console.log('Client connected');
+});
 
 const fileStorage = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -60,10 +71,6 @@ mongoose
     'mongodb+srv://andt_learning:F5zDpHO6ZROiSZUT@cluster0.l89rk.mongodb.net/messages?retryWrites=true&w=majority'
   )
   .then(() => {
-    const server = app.listen(8080);
-    const io = require('socket.io')(server);
-    io.on('connection', (socket) => {
-      console.log('Client connected');
-    });
+    httpServer.listen(8080);
   })
   .catch((err) => console.log(err));
