@@ -51,8 +51,8 @@ app.use('/auth', feedRoutes);
 
 app.use((error, req, res, next) => {
   console.log(error);
-  const { statusCode, message } = error || 500;
-  res.status(statusCode).json({ message });
+  const { statusCode, message, data } = error || 500;
+  res.status(statusCode).json({ message, data });
 });
 
 mongoose
