@@ -12,11 +12,7 @@ const authRoutes = require('./routes/auth');
 
 const app = express();
 const httpServer = createServer(app);
-const io = new Server(httpServer, {
-  cors: {
-    origin: '*',
-  },
-});
+const io = require('./socket').init(httpServer);
 io.on('connection', (socket) => {
   console.log('Client connected');
 });
