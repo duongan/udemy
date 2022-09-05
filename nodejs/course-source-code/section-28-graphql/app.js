@@ -1,6 +1,5 @@
 const path = require('path');
 const { createServer } = require('http');
-const { Server } = require('socket.io');
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
