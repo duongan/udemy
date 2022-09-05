@@ -9,7 +9,7 @@ module.exports = {
     const errors = [];
     if (!validator.isEmail(email)) {
       errors.push({
-        message: 'E-mail is invalid.',
+        message: 'E-Mail is invalid.',
       });
     }
     if (
@@ -20,6 +20,8 @@ module.exports = {
     }
     if (errors.length > 0) {
       const error = new Error('Invalid input.');
+      error.data = errors;
+      error.code = 422;
       throw error;
     }
     const existingUser = await User.findOne({ email });
