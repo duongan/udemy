@@ -1,5 +1,4 @@
 const path = require('path');
-const fs = require('fs');
 const { createServer } = require('http');
 const express = require('express');
 const bodyParser = require('body-parser');
@@ -11,6 +10,7 @@ const { graphqlHTTP } = require('express-graphql');
 const graphqlSchema = require('./graphql/schema');
 const graphqlResolver = require('./graphql/resolvers');
 const auth = require('./middleware/auth');
+const { clearImage } = require('./util/file');
 
 const app = express();
 const httpServer = createServer(app);
@@ -66,12 +66,10 @@ app.put('/post-image', (req, res, next) => {
   if (req.body.oldPath) {
     clearImage(req.body.oldPath);
   }
-  return res
-    .status(201)
-    .json({
-      message: 'File stored.',
-      filePath: req.file.path.replace('\\', '/'),
-    });
+  return res.status(201).json({
+    message: 'File stored.',
+    filePath: req.file.path.replace('\\', '/'),
+  });
 });
 
 app.use(
@@ -110,10 +108,3 @@ mongoose
     httpServer.listen(8080);
   })
   .catch((err) => console.log(err));
-
-const clearImage = (filePath) => {
-  filePath = path.join(__dirname, '..', filePath);
-  fs.unlink(filePath, (err) => {
-    console.log(err);
-  });
-};
