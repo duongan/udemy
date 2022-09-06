@@ -11,9 +11,9 @@ const multer = require('multer');
 
 const errorController = require('./controllers/error');
 const User = require('./models/user');
+const Config = require('./models/config');
 
-const MONGODB_URI =
-  'mongodb+srv://andt_learning:F5zDpHO6ZROiSZUT@cluster0.l89rk.mongodb.net/shop?retryWrites=true&w=majority';
+const MONGODB_URI = `mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PWD}@cluster0.l89rk.mongodb.net/${process.env.MONGO_DB}?retryWrites=true&w=majority`;
 
 const app = express();
 const store = new MongoDBStore({
@@ -93,6 +93,31 @@ app.use((req, res, next) => {
     });
 });
 
+app.use((req, res, next) => {
+  Config.find()
+    .then((configs) => {
+      if (!configs.length) {
+        // const newConfig = new Config({
+        //   sendgridApiKey: '',
+        //   stripeSecretKey: '',
+        // });
+        // newConfig.save().then((result) => {
+        //   console.log(result);
+        // });
+      } else {
+        const [config] = configs;
+        req.CONFIG = {
+          sendgridApiKey: config.sendgridApiKey,
+          stripeSecretKey: config.stripeSecretKey,
+        };
+      }
+      next();
+    })
+    .catch((err) => {
+      next(new Error(err));
+    });
+});
+
 app.use('/admin', adminRoutes);
 app.use(shopRoutes);
 app.use(authRoutes);
@@ -113,7 +138,7 @@ app.use((error, req, res, next) => {
 mongoose
   .connect(MONGODB_URI)
   .then((result) => {
-    app.listen(3000);
+    app.listen(process.env.PORT || 3000);
   })
   .catch((err) => {
     console.log(err);

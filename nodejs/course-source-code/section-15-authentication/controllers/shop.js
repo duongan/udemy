@@ -1,10 +1,9 @@
 const fs = require('fs');
 const path = require('path');
-const stripe = require('stripe')(
-  'sk_test_51LdnMsJPiulTdny1fG3Mtol5jmBoN8CxYlc37xWDGoeYG02b3KEf1Yu1hAKWNQ13w5yWjiKebQU9EZvWO5q82R0S003fCh9LwX'
-);
 
 const PDFDocument = require('pdfkit');
+
+const { getStripe } = require('../util/stripe');
 
 const Product = require('../models/product');
 const Order = require('../models/order');
@@ -154,8 +153,7 @@ exports.getCheckout = (req, res, next) => {
       products.forEach((p) => {
         total += p.quantity * p.productId.price;
       });
-
-      return stripe.checkout.sessions.create({
+      return getStripe(req.CONFIG.stripeSecretKey).checkout.sessions.create({
         payment_method_types: ['card'],
         line_items: products.map((p) => {
           return {

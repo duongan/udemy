@@ -1,0 +1,7 @@
+{
+  "env": {
+    "MONGO_USER": "andt_learning",
+    "MONGO_PWD": "F5zDpHO6ZROiSZUT",
+    "MONGO_DB": "shop"
+  }
+}

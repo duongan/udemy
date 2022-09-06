@@ -1,18 +1,10 @@
 const crypto = require('crypto');
 const bcrypt = require('bcryptjs');
-// const nodemailer = require('nodemailer');
-// const sendgridTransport = require('nodemailer-sendgrid-transport');
 const { validationResult } = require('express-validator');
 
-const User = require('../models/user');
+const { getTransporter } = require('../util/mailer');
 
-// const transporter = nodemailer.createTransport(
-//   sendgridTransport({
-//     auth: {
-//       api_key:
-//     },
-//   })
-// );
+const User = require('../models/user');
 
 exports.getLogin = (req, res, next) => {
   let message = req.flash('error');
@@ -152,12 +144,12 @@ exports.postSignup = (req, res, next) => {
     })
     .then((result) => {
       res.redirect('/login');
-      // return transporter.sendMail({
-      //   to: email,
-      //   from: 'duongan1202@gmail.com',
-      //   subject: 'Signup succeeded!',
-      //   html: '<h1>You successfully signed up!</h1>',
-      // });
+      return getTransporter(req.CONFIG.sendgridApiKey).sendMail({
+        to: email,
+        from: 'duongan1202@gmail.com',
+        subject: 'Signup succeeded!',
+        html: '<h1>You successfully signed up!</h1>',
+      });
     })
     .catch((err) => {
       const error = new Error(err);
@@ -236,17 +228,17 @@ exports.postReset = (req, res, next) => {
         return user.save();
       })
       .then((result) => {
-        console.log(`http://localhost:3000/reset/${token}`);
+        // console.log(`http://localhost:3000/reset/${token}`, req.CONFIG);
         res.redirect('/');
-        // transporter.sendMail({
-        //   to: email,
-        //   from: 'duongan1202@gmail.com',
-        //   subject: 'Password reset!',
-        //   html: `
-        //     <p>You requested a password reset</p>
-        //     <p>Click this <a href="http://localhost:3000/reset/${token}">link</a> to set a new password.</p>
-        //   `,
-        // });
+        getTransporter(req.CONFIG.sendgridApiKey).sendMail({
+          to: req.body.email,
+          from: 'duongan1202@gmail.com',
+          subject: 'Password reset!',
+          html: `
+            <p>You requested a password reset</p>
+            <p>Click this <a href="http://localhost:3000/reset/${token}">link</a> to set a new password.</p>
+          `,
+        });
       })
       .catch((err) => {
         const error = new Error(err);
