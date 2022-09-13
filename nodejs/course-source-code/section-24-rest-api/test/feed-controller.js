@@ -10,9 +10,7 @@ const FeedController = require('../controllers/feed');
 describe('Feed Controller', function () {
   before(function (done) {
     mongoose
-      .connect(
-        'mongodb+srv://andt_learning:F5zDpHO6ZROiSZUT@cluster0.l89rk.mongodb.net/test-messages?retryWrites=true&w=majority'
-      )
+      .connect(process.env.MONGODB_URI)
       .then(() => {
         const user = new User({
           email: 'test@test.com',
