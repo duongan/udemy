@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Grid - Playing around</title>
+    <style>
+      .container {
+        display: grid;
+        /* grid-template-columns: [col1] 2.5rem [col2] 1fr [col3] 2.5rem;
+        column-gap: 0.25rem;
+        row-gap: 0.25rem; */
+        /* grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); */
+        grid-template-columns: repeat(auto-fit, minmax(50px, 1fr));
+        gap: 1rem;
+      }
+      .item1 {
+        background-color: aqua;
+        /* grid-column: col1 / col2; */
+      }
+      .item2 {
+        background-color: antiquewhite;
+        /* grid-column: 2 / 3; */
+        /* grid-row: 1 / span 1; */
+      }
+      .item3 {
+        background-color: brown;
+      }
+      .item4 {
+        background-color: blue;
+      }
+      .item5 {
+        background-color: chartreuse;
+      }
+      .item6 {
+        background-color: darkkhaki;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="item item1">
+        <span>Item 1</span>
+      </div>
+      <div class="item item2"><span>Item 2</span></div>
+      <div class="item item3">Item 3</div>
+      <div class="item item4">Item 4</div>
+      <div class="item item5">Item 5</div>
+      <div class="item item6">Item 6</div>
+      <div class="item item6">Item 7</div>
+      <div class="item item6">Item 8</div>
+    </div>
+  </body>
+</html>
