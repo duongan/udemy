@@ -21,6 +21,8 @@
   <body>
     <app-button text="Add" onclick="add()"></app-button>
     <app-button text="Remove" onclick="remove()"></app-button>
+
+    <app-stopwatch></app-stopwatch>
     <script>
       const add = () => {
         const addButton = document.querySelector('app-button');
@@ -38,7 +40,7 @@
         document.querySelector('app-counter').remove();
       }
     </script>
-    <script src="src/button.js"></script>
-    <script src="src/counter.js"></script>
+    <script src="src/button.js" type="module"></script>
+    <script src="src/counter.js" type="module"></script>
   </body>
 </html>
