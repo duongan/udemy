@@ -16,27 +16,15 @@
       :not(:defined) {
         display: none;
       }
-      h1 {
-        color: red;
-      }
-      h3 {
-        color: red;
-      }
     </style>
   </head>
   <body>
-    <app-button onclick="add()">Add</app-button>
-    <app-button onclick="remove()">Remove</app-button>
     
     <app-card>
       <h1 slot="card-header">Header</h1>
-      <div slot="card-header">
-        <h3>Sub Header</h3>
-      </div>
       <p slot="card-body">This is the card body</p>
     </app-card>
 
-    <app-stopwatch></app-stopwatch>
     <script>
       const add = () => {
         const addButton = document.querySelector('app-button');
