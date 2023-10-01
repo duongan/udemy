@@ -16,6 +16,12 @@
       :not(:defined) {
         display: none;
       }
+      h1 {
+        color: red;
+      }
+      h3 {
+        color: red;
+      }
     </style>
   </head>
   <body>
@@ -24,7 +30,9 @@
     
     <app-card>
       <h1 slot="card-header">Header</h1>
-      <h3 slot="card-header">Sub Header</h3>
+      <div slot="card-header">
+        <h3>Sub Header</h3>
+      </div>
       <p slot="card-body">This is the card body</p>
     </app-card>
 

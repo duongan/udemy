@@ -10,6 +10,11 @@ cardTemplate.innerHTML = /* html */`
       <slot name="card-body">Card Body</slot>
     </div>
   </div>
+  <style>
+    ::slotted(*) {
+      color: black !important;
+    }
+  </style>
 `;
 
 class Card extends HTMLElement {
