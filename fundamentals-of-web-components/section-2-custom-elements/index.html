@@ -4,7 +4,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Web Components</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
     <style>
+      body {
+        padding: 10px;
+      }
       app-button[inprogress] {
         transform: scale(1.1);
         transform-origin: top left;
@@ -16,11 +20,20 @@
       app-counter {
         display: block;
       }
+      :not(:defined) {
+        display: none;
+      }
     </style>
   </head>
   <body>
-    <app-button text="Add" onclick="add()"></app-button>
-    <app-button text="Remove" onclick="remove()"></app-button>
+    <app-button onclick="add()">Add</app-button>
+    <app-button onclick="remove()">Remove</app-button>
+    
+    <app-card>
+      <h1 slot="card-header">Header</h1>
+      <h3 slot="card-header">Sub Header</h3>
+      <p slot="card-body">This is the card body</p>
+    </app-card>
 
     <app-stopwatch></app-stopwatch>
     <script>
@@ -42,5 +55,6 @@
     </script>
     <script src="src/button.js" type="module"></script>
     <script src="src/counter.js" type="module"></script>
+    <script src="src/card.js" type="module"></script>
   </body>
 </html>
