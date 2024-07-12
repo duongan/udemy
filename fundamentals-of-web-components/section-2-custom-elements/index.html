@@ -4,91 +4,46 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Web Components</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
     <style>
-      .btn {
-        background-color: #0070f3;
-        color: white;
-        border: none;
-        border-radius: 7px;
-        padding: 0 2rem;
-        font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
-          "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
-        box-shadow: 0 4px 14px 0 rgba(0, 118, 255, 0.39);
+      body {
+        padding: 10px;
       }
-      .btn:hover {
-        background-color: #1d80f0;
+
+      app-counter {
+        display: block;
       }
-      .btn:disabled {
-        background-color: #6aa8f0;
-      }
-      .fading {
-        animation: fading 0.5s infinite;
-      }
-      @keyframes fading {
-        0% {
-          color: #6aa8f0;
-        }
-        50% {
-          color: white;
-        }
-        100% {
-          color: #6aa8f0;
-        }
+      :not(:defined) {
+        display: none;
       }
     </style>
   </head>
   <body>
-    <app-button
-      id="classic-button-login"
-      onclick="login()"
-      text="Login"
-    ></app-button>
-    <button id="classic-button-register" class="btn" onclick="register()">
-      Register
-    </button>
+    
+    <app-card>
+      <h1 slot="card-header">Header</h1>
+      <p slot="card-body">This is the card body</p>
+    </app-card>
 
     <script>
-      const loginButton = document.querySelector("#classic-button-login");
-      const login = () => {
-        console.log(new Date());
-        const originalButtonText = loginButton.textContent;
-        loginButton.setAttribute("inprogress", "true");
-        // loginButton.textContent = "Loading ...";
-        // loginButton.setAttribute("disabled", "true");
-        // loginButton.classList.add("fading");
+      const add = () => {
+        const addButton = document.querySelector('app-button');
+        addButton.inprogress = true;
         setTimeout(() => {
-          loginButton.removeAttribute("inprogress");
-          //   loginButton.textContent = originalButtonText;
-          //   loginButton.removeAttribute("disabled");
-          //   loginButton.classList.remove("fading");
-          console.log("login response");
+          const counter = document.createElement('app-counter');
+          counter.setAttribute('until', '5');
+          document.body.append(counter);
+          addButton.inprogress = false;
         }, 2000);
-      };
 
-      const registerButton = document.querySelector("#classic-button-register");
-      const register = () => {
-        console.log(new Date());
-        const originalButtonText = registerButton.textContent;
-        registerButton.textContent = "Loading ...";
-        registerButton.setAttribute("disabled", "true");
-        registerButton.classList.add("fading");
-        setTimeout(() => {
-          registerButton.textContent = originalButtonText;
-          registerButton.removeAttribute("disabled");
-          registerButton.classList.remove("fading");
-          console.log("register response");
-        }, 2000);
-      };
-
-      class Button extends HTMLElement {
-        constructor() {
-          super();
-          const text = this.getAttribute("text");
-          this.innerHTML = `<button class="btn">${text}</button>`;
-        }
       }
 
-      customElements.define("app-button", Button);
+      const remove = () => {
+        document.querySelector('app-counter').remove();
+      }
     </script>
+    <script src="src/button.js" type="module"></script>
+    <script src="src/counter.js" type="module"></script>
+    <script src="src/card.js" type="module"></script>
   </body>
 </html>
